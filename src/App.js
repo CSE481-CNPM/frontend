@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import Login from './components/Login';
+import Register from './components/Register';
+import Carousel from './components/Carousel';
+import Footer from './shared/components/Footer';
+import Navbar from './shared/components/Navbar';
+import CardFilm from './components/CardFilm';
+import MovieIsPlay from './components/MovieIsPlay';
+import BoxActor from './components/BoxActor';
+import FilmDetail from './components/FilmDetail';
+import BookingTicket from './components/BookingTicket';
+import BoxPayment from './components/BoxPayment';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      {/* <Navbar /> */}
+      {/* <FilmDetail /> */}
+      {/* <Login /> */}
+      {/* <Register /> */}
+      {/* <Carousel /> */}
+      {/* <BookingTicket /> */}
+      {/* <CardFilm /> */}
+      {/* <MovieIsPlay /> */}
+      {/* <BoxActor /> */}
+      {/* <BoxPayment /> */}
+      {/* <Footer /> */}
     </div>
   );
 }

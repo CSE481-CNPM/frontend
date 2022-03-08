@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-@import 'react-datepicker/dist/react-datepicker.css';
 
 * {
   box-sizing: border-box;
@@ -25,4 +24,7 @@ a:active {
 
 ul {
   list-style: none;
+}
+.app {
+  background-color: #000;
 }
