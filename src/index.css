@@ -25,3 +25,6 @@ a:active {
 ul {
   list-style: none;
 }
+.app {
+  background-color: #000;
+}

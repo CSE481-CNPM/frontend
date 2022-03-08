@@ -13,6 +13,18 @@ import NotFound from './pages/NotFound';
 
 import LoadingSpinner from './shared/components/LoadingSpinner';
 
+import Login from './components/Login';
+import Register from './components/Register';
+import Carousel from './components/Carousel';
+import Footer from './shared/components/Footer';
+import Navbar from './shared/components/Navbar';
+import CardFilm from './components/CardFilm';
+import MovieIsPlay from './components/MovieIsPlay';
+import BoxActor from './components/BoxActor';
+import FilmDetail from './components/FilmDetail';
+import BookingTicket from './components/BookingTicket';
+import BoxPayment from './components/BoxPayment';
+
 // const Home = React.lazy(() => import('./pages/Home'));
 // const Movie = React.lazy(() => import('./pages/Movie'));
 // const Booking = React.lazy(() => import('./pages/Booking'));
@@ -121,6 +133,17 @@ const App = () => {
       <BrowserRouter>
         <main>
           <Suspense fallback={<LoadingSpinner />}>{routes}</Suspense>
+          {/* <Navbar /> */}
+          {/* <FilmDetail /> */}
+          {/* <Login /> */}
+          {/* <Register /> */}
+          {/* <Carousel /> */}
+          {/* <BookingTicket /> */}
+          {/* <CardFilm /> */}
+          {/* <MovieIsPlay /> */}
+          {/* <BoxActor /> */}
+          {/* <BoxPayment /> */}
+          {/* <Footer /> */}
         </main>
       </BrowserRouter>
     </AuthContext.Provider>
