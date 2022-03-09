@@ -1,3 +1,10 @@
+import './assets/libs/boxicons-2.1.1/css/boxicons.min.css';
+import './scss/App.scss';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Blank from './pages/Admin/Blank';
+import Dashboard from './pages/Admin/Dashboard';
+import MainLayout from './layout/MainLayout';
+
 import React, { Fragment } from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -25,6 +32,14 @@ function App() {
       {/* <BoxActor /> */}
       {/* <BoxPayment /> */}
       {/* <Footer /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path='addfilm' element={<Blank />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
