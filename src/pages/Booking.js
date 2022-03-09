@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
-import Screen from '../components/Screen';
+import BookingTicket from '../components/BookingTicket';
 
 import './Booking.css';
 
@@ -11,7 +11,7 @@ const Booking = () => {
     <React.Fragment>
       <div className="booking-wrapper">
         <Navbar />
-        <Screen />
+        <BookingTicket />
         <Footer />
       </div>
     </React.Fragment>

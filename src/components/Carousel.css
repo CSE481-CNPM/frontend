@@ -10,7 +10,7 @@
   object-fit: cover;
 }
 .carousel-container {
-  width: 1450px;
+  width: 100%;
   margin: 0 auto;
 }
 .carousel .content {

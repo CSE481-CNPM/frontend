@@ -17,9 +17,9 @@ function Screen() {
     }
   };
   return (
-    <div className='screen'>
+    <div className="screen">
       <h2>Chỗ ngồi</h2>
-      <table className='table-seat'>
+      <table className="table-seat">
         <tbody>
           <tr onClick={(e) => onGetValue(e, 'A')}>
             <td>

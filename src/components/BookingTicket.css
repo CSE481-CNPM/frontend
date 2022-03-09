@@ -1,5 +1,5 @@
 .Booking-container {
-  width: 1450px;
+  max-width: 1450px;
   padding: 20px;
   margin: 0 auto;
   background-color: #181818;

@@ -2,8 +2,17 @@
   background-color: rgba(0, 0, 0, 0.9);
   height: 70px;
 }
+.close-modal-btn {
+  margin: 5px 15px;
+}
+.close-modal-btn:hover {
+  cursor: pointer;
+}
+.confirm-login-btn {
+  color: #fff;
+}
 .navbar {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -39,6 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  white-space: nowrap;
 }
 .navbar-auth > a {
   color: #fff;
