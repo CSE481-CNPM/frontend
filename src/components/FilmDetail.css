@@ -1,5 +1,5 @@
 .film-container {
-  width: 1450px;
+  width: 100%;
   margin: 0 auto;
   color: #fff;
   position: relative;
@@ -67,10 +67,12 @@
 }
 .content-film-1 {
   margin-right: 10px;
-  width: 300px;
+  /* width: 300px; */
+  width: 30%;
 }
 .content-film-2 {
-  width: 700px;
+  /* width: 700px; */
+  width: 70%;
 }
 .content-film-2 h3 {
   font-size: 20px;

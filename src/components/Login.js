@@ -1,49 +1,60 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import './Login.css';
 
-function Login() {
+function Login(props) {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
   const onEmailChange = () => {
-    const email = onEmailChange(emailRef.current.value);
+    props.onEmailChange(emailRef.current.value);
   };
+
   const onPasswordChange = () => {
-    const password = onPasswordChange(passwordRef.current.value);
+    props.onPasswordChange(passwordRef.current.value);
   };
+
   const onSubmitLogin = () => {
-    console.log('...');
+    props.authSubmitHandler();
   };
+
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [checkPass, setCheckPass] = useState(false);
+
   return (
-    <div className='login'>
-      <div className='form'>
+    <div className="login">
+      <div className="form">
         <h3>Đăng Nhập</h3>
 
-        <div className='form-field'>
+        <div className="form-field">
           <input
-            type='text'
-            className='form-input'
-            name='email'
-            placeholder='Email'
+            type="text"
+            className="form-input"
+            name="email"
+            placeholder="Email"
             onChange={onEmailChange}
             ref={emailRef}
           />
         </div>
-        <div className='form-field' name='password'>
+        <div className="form-field" name="password">
           <input
-            type='text'
-            className='form-input'
-            placeholder='Mật khẩu'
+            type="text"
+            className="form-input"
+            placeholder="Mật khẩu"
             onChange={onPasswordChange}
             ref={passwordRef}
           />
         </div>
 
-        <p className='btn-register' onClick={onSubmitLogin}>
+        <p className="btn-register" onClick={onSubmitLogin}>
           Đăng nhập
         </p>
-        <p className='res-question'>
-          Bạn chưa có tài khoản? <span>Đăng kí ngay</span>
+        <p className="res-question">
+          Bạn chưa có tài khoản?{' '}
+          <span className="content-text-span" onClick={props.authModeToggler}>
+            Đăng kí ngay
+          </span>
         </p>
       </div>
     </div>
