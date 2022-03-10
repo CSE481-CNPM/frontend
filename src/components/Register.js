@@ -71,7 +71,7 @@ function Register(props) {
         </div>
         <div className="form-field" name="password">
           <input
-            type="text"
+            type="password"
             className="form-input"
             placeholder="Mật khẩu"
             onChange={onPasswordChange}
@@ -80,7 +80,7 @@ function Register(props) {
         </div>
         <div className="form-field" name="enter-password">
           <input
-            type="text"
+            type="password"
             className="form-input"
             placeholder="Nhập lại mật khẩu"
             onChange={onConfirmPasswordChange}

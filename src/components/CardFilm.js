@@ -1,20 +1,19 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './CardFilm.css';
 
-function CardFilm() {
+function CardFilm({ movieId, poster, movieName, category }) {
   return (
-    <div className='card-film'>
-      <div className='card-film-image'>
-        <img
-          src='https://upload.wikimedia.org/wikipedia/vi/4/42/%C3%81p_ph%C3%ADch_phim_M%E1%BA%AFt_bi%E1%BA%BFc.jpg'
-          alt=''
-        />
-        <a href='#'>Chi tiết</a>
+    <div className="card-film">
+      <div className="card-film-image">
+        <img src={poster} alt="" />
+        <Link to={`/movie/${movieId}`}>Chi tiết</Link>
       </div>
-      <div className='card-film-content'>
-        <h3>Mắt biếc okokokokokokokokokoko</h3>
-        <p>Tình cảm , học đường,Tình cảm , học đường,Tình cảm , học đường</p>
+      <div className="card-film-content">
+        <h3>{movieName}</h3>
+        <p>{category}</p>
       </div>
     </div>
   );

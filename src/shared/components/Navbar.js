@@ -53,7 +53,7 @@ function Navbar() {
           <div className="navbar-logo">
             <Link to={'/'}>
               <img
-                src="https://lh3.googleusercontent.com/fife/AAWUweWeYsBEcTdmdhh2HYx--4hDFgdhtdMrRG3gVsJOpAR0omKSl8Idx2D67-PHWsqraqAWYq61bg0CE-gpkugGdNrMP6OWgal7BpKFQnV_Jr96Fqcq9bczYWQbQ0Bswf2mjQwEnchPIKiwkjX0S3eYllr4hydWiLHM7Jb5o1S69py3Lddvsf1LB9q3PuYV4pVMQRq61a_r5GDrmU8G017A_T7iGe9ZEv26EyZ5zIDkc75e1XDtuUsZpGBqhy_zEG78Jq1USSoqrVPQewvVKhTVa0fIzZZ_MhFpFg0nNQzMctoVTQhy2ylZIZk93BuKmlL2kZC8gCl83f-zErvQ-ITbquvTJ8gY1V9BUNtlVtzsNoLow6Qg9OOO2pwuZvm1-Ns8q9SJi1_P5Nk4kXHYsmqC5s-A5MHPWe8AXszORLbEnIDXx6h_pZjaRwxMExH5xx-Z7CneQvf05Yx7syhCRZoSggBWohPeSYtwEumJiUCGE7nyYxIHC1bOdCwtJcZxDMVoJobcBEpbWfBjg3TEXP9jsCfKQm1ueOMMDZtPiTxv0HpQQ4boccSAq3Mhhc-GVSkyA6Ld_UYISAuwW1iKKRVGUNltGPM8Ade4qOkpaZMDmbhh0t8eCk8xeFpqUNVRaW1LzpJ6qgLBffQEE0ppZKhTHOFrP3CxP34U6ATt5rXkbrbhPjVdMWHbVspoeHzWvYEM1dlzacwoaioaLxwe4Gh7rZz6Zx0=w200-h190-p-k-nu"
+                src="https://lh3.googleusercontent.com/fife/AAWUweXGgBABUnawdjQgMGem3M0sfske9ugy-XgOCFNoEn-f4_SLOnA0a38uznjjV_UQUM60PD6xCAZAp9duJ6TrqOZbIBbbmu-V6oTWhCN_hzVRybU78SXoBbMlq3cIXF_noI1Yuekb1v7SMatGU03_cr-vC8YIfQVdGwegFPV00IveUB3wyIvGoScAD07Wn-rF2beSV6MXthH3Y2sSzERn0mUfAfL5wLGspWCLbhjCSdl28SPSlVMmlVRbl8OkB7GmNclhH1cR9T94_4oba3_gtPg86jBGdRY0dQq4SPwi6DN3CTFzYoQ_W3pvESpBTRltmXpg_X5VcZavLQCN8kR1aBvi7OjpC8ZVted316m5I80LEWhIilbCquACjNQVNF1sZv9WF3czr1SxMFQb-XuXN3qRg3xuiyHJ_hF6QsZ1a9ZlWuGLNll7qc73sI_teS0iL_KVrlDrjAubn0MflhdPM1zz2jlrK1oc9J2fiL4miOqLiw1ZV_zKb83pTxGJ4sJLjsf5Kfx0FD9b5-p7g5zruVeUg8ubiSwIrg9_QDxteZt3ehHAWcdjXMg11XvfWB1mGR1V-YGaN4adYVQRrL5h51C131jk-Ht-vEik3Oe8NsupgvO0sSKuQ2MInSmIJcCdsK2Lehmbkn1DMB8BiKromo4DsiHNkrXqmdk_bfOGmdgZVYdWcl2EQgJh2Qhcy-6EKDF-jNe29OTBxuYSdiGUabVJgQfYsrTWQxg=w400-h380-p-k-nu"
                 alt=""
               />
             </Link>
@@ -108,6 +108,11 @@ function Navbar() {
                 />
                 {showMenu ? (
                   <div className="nav-menu-box">
+                    {auth.isAdmin && auth.isAdmin !== 'user' && (
+                      <Link to={`/admin/dashboard`}>
+                        <p>Quản trị hệ thống</p>
+                      </Link>
+                    )}
                     <Link to={`/library/${auth.userId}`}>
                       <p>Thư viện</p>
                     </Link>

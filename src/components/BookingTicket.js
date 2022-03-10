@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Screen from './Screen';
 import './BookingTicket.css';
 
-function BookingTicket() {
+function BookingTicket({ movie }) {
   const navigate = useNavigate();
   const [province, setProvince] = useState('Hà Nội');
   const [showMenuProvince, setShowMenuProvince] = useState(false);
@@ -36,10 +36,17 @@ function BookingTicket() {
         'Tầng 3&4 - TTTM AEON MALL Hà Đông , Dương nội , Hà Đông, Hà Nội',
       showTime: ['17:00-19:00', '20:00-22:00', '7:00-9:00'],
     },
+    {
+      id: '3',
+      name: 'CCV AEON Hà Đông',
+      address:
+        'Tầng 3&4 - TTTM AEON MALL Hà Đông , Dương nội , Hà Đông, Hà Nội',
+      showTime: ['17:00-19:00', '20:00-22:00', '7:00-9:00'],
+    },
   ];
   const api = [
     {
-      day: '07/03/2022',
+      day: new Date(movie.movieDay).toLocaleString().split(',')[0],
     },
     {
       day: '08/03/2022',
@@ -201,10 +208,10 @@ function BookingTicket() {
         <div className="payment">
           <div className="payment-info">
             <p>
-              Số lượng vé: <span>3</span>
+              Số lượng vé: <span>0</span>
             </p>
             <p>
-              Thành tiền : <span>150.000 VND</span>
+              Thành tiền : <span>0 VND</span>
             </p>
           </div>
           <div className="payment-btn">

@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import Modal from '../shared/components/Modal';
+import Button from '../shared/components/Button';
+import { AuthContext } from '../shared/context/auth-context';
+
 import './Carousel.css';
 
-function Carousel() {
+function Carousel({ movieList }) {
+  const auth = useContext(AuthContext);
+
+  const [modalIsShown, setModalIsShown] = useState(false);
+
+  const closeModal = () => {
+    setModalIsShown(false);
+  };
+
   const apiFilm = [
     {
       filmID: '1',
@@ -58,31 +72,56 @@ function Carousel() {
     cssEase: 'linear',
   };
   return (
-    <div className='carousel-container'>
-      <Slider {...settings}>
-        {apiFilm.map((item, index) => {
-          return (
-            <div
-              key={item.filmID}
-              className='carousel'
-              style={{
-                backgroundImage: 'URL("' + 'ok' + '")',
-              }}
-            >
-              <img src={item.poster} alt='' />
-              <div className='content'>
-                <h2>{item.nameFilm}</h2>
-                <p className='des'>{item.description}</p>
-                <p className='actor'>diễn viên : {item.actor}</p>
-                <p className='btn-booking'>
-                  <a href='#'>Đặt vé ngay</a>
-                </p>
+    <React.Fragment>
+      <Modal
+        onCancel={closeModal}
+        header="Oops..."
+        show={modalIsShown}
+        footer={
+          <>
+            <span className="close-modal-btn" onClick={closeModal}>
+              Hủy
+            </span>
+            <Button>
+              <Link to={'/authentication'} onClick={closeModal}>
+                <p className="confirm-login-btn">Đăng nhập</p>
+              </Link>
+            </Button>
+          </>
+        }
+      >
+        <p>Bạn cần đăng nhập để thực hiện tác vụ này</p>
+      </Modal>
+      <div className="carousel-container">
+        <Slider {...settings}>
+          {movieList.map((item, index) => {
+            return (
+              <div
+                key={item._id}
+                className="carousel"
+                style={{
+                  backgroundImage: 'URL("' + 'ok' + '")',
+                }}
+              >
+                <img src={item.background} alt="" />
+                <div className="content">
+                  <h2>{item.nameFilm}</h2>
+                  <p className="des">{item.description}</p>
+                  <p className="actor">Diễn viên: {item.actor}</p>
+                  <p className="btn-booking">
+                    {auth.isLoggedIn ? (
+                      <Link to={`/booking/${item._id}`}>Đặt vé ngay!</Link>
+                    ) : (
+                      <a onClick={setModalIsShown.bind(true)}>Đặt vé ngay!</a>
+                    )}
+                  </p>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </Slider>
-    </div>
+            );
+          })}
+        </Slider>
+      </div>
+    </React.Fragment>
   );
 }
 

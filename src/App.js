@@ -21,7 +21,7 @@ import LoadingSpinner from './shared/components/LoadingSpinner';
 // const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const { token, login, logout } = useAuth();
+  const { token, login, logout, isAdmin } = useAuth();
 
   let routes;
   let adminRoutes;
@@ -72,8 +72,8 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movie/*" element={<Movie />} />
-        <Route path="/booking/*" element={<Booking />} />
+        <Route path="/movie/:movieId" element={<Movie />} />
+        <Route path="/booking/:movieId" element={<Booking />} />
 
         <Route path="/authentication" element={<Navigate to="/" />} />
 
@@ -90,12 +90,12 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movie/*" element={<Movie />} />
-        <Route path="/booking/*" element={<Booking />} />
+        <Route path="/movie/:movieId" element={<Movie />} />
+        <Route path="/booking/:movieId" element={<Navigate to="/" />} />
 
         <Route path="/authentication" element={<Authentication />} />
 
-        <Route path="/library/:uid" element={<Library />} />
+        <Route path="/library/:uid" element={<Navigate to="/" />} />
 
         <Route path="/admin" element={<NotFound />} />
         {/* {adminRoutes} */}
@@ -111,6 +111,7 @@ const App = () => {
       value={{
         isLoggedIn: !!token,
         token: token,
+        isAdmin: isAdmin,
         login: login,
         logout: logout,
       }}

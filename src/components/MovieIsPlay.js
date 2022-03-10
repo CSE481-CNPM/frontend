@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './MovieIsPlay.css';
 
-function MovieIsPlay() {
+function MovieIsPlay({ movieList }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -15,11 +15,19 @@ function MovieIsPlay() {
     slidesToScroll: 1,
   };
   return (
-    <div className='MoviePlay'>
+    <div className="MoviePlay">
       <h2>Phim đang chiếu</h2>
       <Slider {...settings}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => {
-          return <CardFilm />;
+        {movieList.map((item, index) => {
+          return (
+            <CardFilm
+              key={item._id}
+              movieId={item._id}
+              poster={item.urlImg}
+              movieName={item.nameFilm}
+              category={item.category}
+            />
+          );
         })}
       </Slider>
     </div>

@@ -18,14 +18,22 @@
 
 .modal__header h2 {
   margin: 0.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .modal__content {
   padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 
 .modal__footer {
   padding: 1rem 0.5rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media (min-width: 768px) {

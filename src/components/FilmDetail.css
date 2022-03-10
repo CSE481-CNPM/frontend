@@ -38,8 +38,9 @@
 .detail h2 {
   font-size: 48px;
   margin-bottom: 10px;
+  margin-left: 25px;
 }
-.detail > p {
+.detail > a > p {
   padding: 12px 50px;
   background-color: #dc1a22;
   text-align: center;
@@ -47,6 +48,8 @@
   border-radius: 5px;
   display: inline-block;
   font-size: 20px;
+  margin-left: 25px;
+  color: #fff;
 }
 .content-film {
   display: flex;
@@ -68,11 +71,15 @@
 .content-film-1 {
   margin-right: 10px;
   /* width: 300px; */
-  width: 30%;
+  width: 35%;
+  margin-left: 25px;
 }
 .content-film-2 {
   /* width: 700px; */
-  width: 70%;
+  width: 65%;
+  margin-left: 50px;
+  overflow: auto;
+  max-height: 250px;
 }
 .content-film-2 h3 {
   font-size: 20px;

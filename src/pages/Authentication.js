@@ -109,16 +109,12 @@ const Authentication = () => {
         },
       })
         .then((res) => {
-          // if (!res.data.success) {
-          //   setIsLoading(false);
-          //   setError(res.data.error);
-          // }
-          auth.login(res.data.token);
+          auth.login(res.data.role, res.data.token);
           setIsLoading(false);
         })
         .catch((err) => {
           setIsLoading(false);
-          setError(err.message);
+          setError(err.response.data.error);
         });
     } else {
       setIsLoading(true);
@@ -135,12 +131,12 @@ const Authentication = () => {
         },
       })
         .then((res) => {
-          auth.login(res.data.token);
+          auth.login(res.data.role, res.data.token);
           setIsLoading(false);
         })
         .catch((err) => {
           setIsLoading(false);
-          setError(err.message);
+          setError(err.response.data.error);
         });
     }
   };

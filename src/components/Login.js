@@ -39,7 +39,7 @@ function Login(props) {
         </div>
         <div className="form-field" name="password">
           <input
-            type="text"
+            type="password"
             className="form-input"
             placeholder="Mật khẩu"
             onChange={onPasswordChange}

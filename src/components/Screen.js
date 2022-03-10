@@ -5,6 +5,7 @@ import './Screen.css';
 function Screen() {
   const [status, setStatus] = useState([]);
   const [booked, setBooked] = useState(['D4', 'A2', 'A5']);
+
   const onGetValue = (e, a) => {
     const seat = a + e.target.innerHTML;
     if (status.includes(seat)) {
