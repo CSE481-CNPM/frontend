@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import ErrorModal from '../shared/components/ErrorModal';
 import LoadingSpinner from '../shared/components/LoadingSpinner';
@@ -22,13 +22,19 @@ const validateEmail = (email) => {
 };
 
 const Authentication = () => {
-  const [username, setUsername] = useState('');
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const onUsernameChange = (firstName, lastName) => {
-    setUsername(`${firstName} ${lastName}`);
+  const onFirstNameChange = (firstName) => {
+    setFirstName(firstName);
+  };
+  const onLastNameChange = (lastName) => {
+    setLastName(lastName);
   };
   const onEmailChange = (email) => {
     setEmail(email);
@@ -45,10 +51,11 @@ const Authentication = () => {
 
   const auth = useContext(AuthContext);
 
-  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoginMode, setIsLoginMode] = useState(!searchParams.get('register'));
 
   const authModeToggler = () => {
-    setUsername('');
+    setFirstName('');
+    setLastName('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
@@ -59,7 +66,8 @@ const Authentication = () => {
   const authSubmitHandler = async () => {
     if (!isLoginMode) {
       if (
-        username === '' ||
+        firstName === '' ||
+        lastName === '' ||
         email === '' ||
         password === '' ||
         confirmPassword === ''
@@ -69,7 +77,7 @@ const Authentication = () => {
       } else if (!validateEmail(email)) {
         setError('Email không hợp lệ');
         return;
-      } else if (password.length < 3 || password.length > 6) {
+      } else if (password.length < 3 || password.length > 10) {
         setError('Độ dài password chưa hợp lệ');
         return;
       } else if (password !== confirmPassword) {
@@ -83,7 +91,7 @@ const Authentication = () => {
       } else if (!validateEmail(email)) {
         setError('Email không hợp lệ');
         return;
-      } else if (password.length < 3 || password.length > 6) {
+      } else if (password.length < 3 || password.length > 10) {
         setError('Độ dài password chưa hợp lệ');
         return;
       }
@@ -91,58 +99,49 @@ const Authentication = () => {
 
     if (isLoginMode) {
       setIsLoading(true);
-      // axios({
-      //   method: 'post',
-      //   baseURL: process.env.REACT_APP_BACKEND_URL,
-      //   url: '/login',
-      //   data: {
-      //     Email: email.toString(),
-      //     Password: password.toString(),
-      //   },
-      // })
-      //   .then((res) => {
-      //     auth.login(
-      //       res.data.user.id,
-      //       res.data.user.IsAdmin,
-      //       res.data.user.Username,
-      //       res.data.token
-      //     );
-      //     setIsLoading(false);
-      //   })
-      //   .catch((err) => {
-      //     setIsLoading(false);
-      //     setError(err.message);
-      //   });
-      console.log('Login...', username, email, password, confirmPassword);
+      axios({
+        method: 'post',
+        baseURL: process.env.REACT_APP_BACKEND_URL,
+        url: '/v1/auth/login',
+        data: {
+          email: email.toString(),
+          password: password.toString(),
+        },
+      })
+        .then((res) => {
+          // if (!res.data.success) {
+          //   setIsLoading(false);
+          //   setError(res.data.error);
+          // }
+          auth.login(res.data.token);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setError(err.message);
+        });
     } else {
       setIsLoading(true);
-      // axios({
-      //   method: 'post',
-      //   baseURL: process.env.REACT_APP_BACKEND_URL,
-      //   url: '/register',
-      //   data: {
-      //     Email: email.toString(),
-      //     Password: password.toString(),
-      //     Password_confirmation: confirmPassword.toString(),
-      //     Username: username.toString(),
-      //     IsAdmin: '0',
-      //     IdNhanVien: 0,
-      //   },
-      // })
-      //   .then((res) => {
-      //     auth.login(
-      //       res.data.user.id,
-      //       res.data.user.IsAdmin,
-      //       res.data.user.Username,
-      //       res.data.token
-      //     );
-      //     setIsLoading(false);
-      //   })
-      //   .catch((err) => {
-      //     setIsLoading(false);
-      //     setError(err.message);
-      //   });
-      console.log('Register...', username, email, password, confirmPassword);
+      axios({
+        method: 'post',
+        baseURL: process.env.REACT_APP_BACKEND_URL,
+        url: '/v1/auth/register',
+        data: {
+          firstname: firstName.toString(),
+          lastname: lastName.toString(),
+          email: email.toString(),
+          password: password.toString(),
+          role: 'user',
+        },
+      })
+        .then((res) => {
+          auth.login(res.data.token);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setError(err.message);
+        });
     }
   };
 
@@ -166,7 +165,8 @@ const Authentication = () => {
         ) : (
           <Register
             authModeToggler={authModeToggler}
-            onUsernameChange={onUsernameChange}
+            onFirstNameChange={onFirstNameChange}
+            onLastNameChange={onLastNameChange}
             onEmailChange={onEmailChange}
             onPasswordChange={onPasswordChange}
             onConfirmPasswordChange={onConfirmPasswordChange}

@@ -9,11 +9,12 @@ function Register(props) {
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
 
-  const onUsernameChange = () => {
-    props.onUsernameChange(
-      firstNameRef.current.value,
-      lastNameRef.current.value
-    );
+  const onFirstNameChange = () => {
+    props.onFirstNameChange(firstNameRef.current.value);
+  };
+
+  const onLastNameChange = () => {
+    props.onLastNameChange(lastNameRef.current.value);
   };
 
   const onEmailChange = () => {
@@ -43,7 +44,7 @@ function Register(props) {
               className="form-input"
               name="first-name"
               placeholder="Họ"
-              onChange={onUsernameChange}
+              onChange={onFirstNameChange}
               ref={firstNameRef}
             />
           </div>
@@ -53,7 +54,7 @@ function Register(props) {
               className="form-input"
               name="last-name"
               placeholder="Tên"
-              onChange={onUsernameChange}
+              onChange={onLastNameChange}
               ref={lastNameRef}
             />
           </div>

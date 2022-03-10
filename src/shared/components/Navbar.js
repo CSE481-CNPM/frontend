@@ -13,8 +13,9 @@ function Navbar() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(auth.isLoggedIn);
 
-  const logoutHandler = () => {
+  const logout = () => {
     setIsLoggedIn(!isLoggedIn);
+    auth.logout();
   };
 
   const [showMenu, setShowMenu] = useState(false);
@@ -110,13 +111,13 @@ function Navbar() {
                     <Link to={`/library/${auth.userId}`}>
                       <p>Thư viện</p>
                     </Link>
-                    <p onClick={logoutHandler}>Đăng xuất</p>
+                    <p onClick={logout}>Đăng xuất</p>
                   </div>
                 ) : null}
               </div>
             ) : (
               <>
-                <a href="/authentication">Đăng kí</a>
+                <a href="/authentication/?register=true">Đăng kí</a>
                 <a href="/authentication" className="active">
                   Đăng nhập
                 </a>

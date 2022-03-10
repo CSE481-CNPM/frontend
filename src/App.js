@@ -21,7 +21,7 @@ import LoadingSpinner from './shared/components/LoadingSpinner';
 // const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const { token, login, logout, userId, isAdmin, username } = useAuth();
+  const { token, login, logout } = useAuth();
 
   let routes;
   let adminRoutes;
@@ -111,9 +111,6 @@ const App = () => {
       value={{
         isLoggedIn: !!token,
         token: token,
-        userId: userId,
-        isAdmin: isAdmin,
-        username: username,
         login: login,
         logout: logout,
       }}
