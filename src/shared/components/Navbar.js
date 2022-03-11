@@ -8,7 +8,7 @@ import { AuthContext } from '../context/auth-context';
 
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ tab }) {
   const auth = useContext(AuthContext);
 
   const [isLoggedIn, setIsLoggedIn] = useState(auth.isLoggedIn);
@@ -19,7 +19,7 @@ function Navbar() {
   };
 
   const [showMenu, setShowMenu] = useState(false);
-  const [tab, setTab] = useState(1);
+  // const [tab, setTab] = useState(1);
 
   const [modalIsShown, setModalIsShown] = useState(false);
 
@@ -64,7 +64,7 @@ function Navbar() {
                 <a
                   href="/"
                   className={tab === 1 ? 'active' : null}
-                  onClick={() => setTab(1)}
+                  // onClick={() => setTab(1)}
                 >
                   Trang chủ
                 </a>
@@ -73,7 +73,7 @@ function Navbar() {
                 <a
                   href=""
                   className={tab === 2 ? 'active' : null}
-                  onClick={() => setTab(2)}
+                  // onClick={() => setTab(2)}
                 >
                   Phim
                 </a>
@@ -83,7 +83,7 @@ function Navbar() {
                   <a
                     href={`/library`}
                     className={tab === 3 ? 'active' : null}
-                    onClick={() => setTab(3)}
+                    // onClick={() => setTab(3)}
                   >
                     Thư viện
                   </a>

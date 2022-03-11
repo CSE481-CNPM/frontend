@@ -150,7 +150,7 @@ const Authentication = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="authentication-wrapper">
-        <Navbar />
+        <Navbar tab={0} />
         {isLoginMode ? (
           <Login
             authModeToggler={authModeToggler}

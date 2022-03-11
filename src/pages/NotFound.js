@@ -11,7 +11,7 @@ const NotFound = () => {
     <React.Fragment>
       <div className="notfound-wrapper">
         <div className="dark-overlay">
-          <Navbar />
+          <Navbar tab={0} />
           <div className="notfound">
             <h1>404</h1>
             <h2>Oops... Có vẻ như trang bạn tìm kiếm không tồn tại...</h2>

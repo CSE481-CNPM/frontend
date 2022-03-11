@@ -94,6 +94,9 @@ function BookingTicket({
   );
 
   const fetchSeat = () => {
+    setBooked([]);
+    setStatus([]);
+    setBookingNum(0);
     setIsLoading(true);
     axios({
       method: 'get',
@@ -106,9 +109,6 @@ function BookingTicket({
       },
     })
       .then((res) => {
-        setBooked([]);
-        setStatus([]);
-        setBookingNum(0);
         setBooked([...res.data.seat]);
         setIsLoading(false);
       })

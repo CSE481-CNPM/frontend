@@ -54,7 +54,7 @@ const Home = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="home-wrapper">
-        <Navbar />
+        <Navbar tab={1} />
         <Carousel movieList={movieList} />
         <MovieIsPlay movieList={movieList} />
         <Footer />
