@@ -21,6 +21,8 @@ const Home = () => {
 
   const [movieList, setMovieList] = useState([]);
 
+  console.log(movieList);
+
   const fetchData = () => {
     setIsLoading(true);
     axios({

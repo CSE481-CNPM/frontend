@@ -55,7 +55,7 @@ const App = () => {
 
         <Route path="/authentication" element={<Navigate to="/" />} />
 
-        <Route path="/library/:uid" element={<Library />} />
+        <Route path="/library" element={<Library />} />
 
         <Route path="/admin" element={<NotFound />} />
         {adminRoutes}
@@ -73,7 +73,7 @@ const App = () => {
 
         <Route path="/authentication" element={<Authentication />} />
 
-        <Route path="/library/:uid" element={<Navigate to="/" />} />
+        <Route path="/library" element={<Navigate to="/" />} />
 
         <Route path="/admin" element={<NotFound />} />
         {adminRoutes}

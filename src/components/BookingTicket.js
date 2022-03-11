@@ -7,7 +7,17 @@ import './BookingTicket.css';
 import { AuthContext } from '../shared/context/auth-context';
 import axios from 'axios';
 
-function BookingTicket({ movie, setIsLoading, setError }) {
+function BookingTicket({
+  movie,
+  setIsLoading,
+  setError,
+  booked,
+  setBooked,
+  status,
+  setStatus,
+  bookingNum,
+  setBookingNum,
+}) {
   const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -69,13 +79,19 @@ function BookingTicket({ movie, setIsLoading, setError }) {
     setStatusDay(e.target.id);
   };
 
-  const [booked, setBooked] = useState([]);
+  // const [booked, setBooked] = useState([]);
 
-  const [status, setStatus] = useState([]);
+  // const [status, setStatus] = useState([]);
 
-  const [bookingNum, setBookingNum] = useState(0);
+  // const [bookingNum, setBookingNum] = useState(0);
 
-  console.log(movie._id, booked, status, bookingNum, chooseTime);
+  console.log(
+    movie._id,
+    booked,
+    status,
+    bookingNum,
+    chooseTime.time.substr(0, 5)
+  );
 
   const fetchSeat = () => {
     setIsLoading(true);
@@ -90,7 +106,10 @@ function BookingTicket({ movie, setIsLoading, setError }) {
       },
     })
       .then((res) => {
-        setBooked(res.data.seat);
+        setBooked([]);
+        setStatus([]);
+        setBookingNum(0);
+        setBooked([...res.data.seat]);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -100,6 +119,8 @@ function BookingTicket({ movie, setIsLoading, setError }) {
   };
 
   const onGetShowTime = (e) => {
+    fetchSeat();
+
     const obj = {
       idCinema: e.target.id,
       cinemaName: apiCinema.find((el) => el.id === e.target.id).name,
@@ -107,11 +128,6 @@ function BookingTicket({ movie, setIsLoading, setError }) {
       time: e.target.innerHTML,
     };
     setChooseTime(obj);
-
-    setBooked([]);
-    setStatus([]);
-    setBookingNum(0);
-    fetchSeat();
   };
 
   const [paymentInfo, setPaymentInfo] = useState({});
@@ -129,14 +145,14 @@ function BookingTicket({ movie, setIsLoading, setError }) {
     }
     setIsLoading(true);
     console.log({
-      time: chooseTime.time.substr(0, 2) + ':00',
+      time: chooseTime.time.substr(0, 5),
       cinemaName: chooseTime.cinemaName,
       cinemaAddress: chooseTime.cinemaAddress,
     });
     console.log({
       filmId: movie._id,
       cinemaId: chooseTime.idCinema,
-      showTime: chooseTime.time.substr(0, 2) + ':00',
+      showTime: chooseTime.time.substr(0, 5),
       seat: status[0],
       room: 'P1',
       price: 50000 * bookingNum,
@@ -151,7 +167,7 @@ function BookingTicket({ movie, setIsLoading, setError }) {
       data: {
         filmId: movie._id,
         cinemaId: chooseTime.idCinema,
-        showTime: chooseTime.time.substr(0, 2) + '00',
+        showTime: chooseTime.time.substr(0, 5),
         seat: status[0],
         room: 'P1',
         price: 50000 * bookingNum,
@@ -161,7 +177,7 @@ function BookingTicket({ movie, setIsLoading, setError }) {
         console.log(res.data);
         setIsLoading(false);
         setPaymentInfo({
-          time: chooseTime.time.substr(0, 2) + ':00',
+          time: chooseTime.time.substr(0, 5),
           cinemaName: chooseTime.cinemaName,
           cinemaAddress: chooseTime.cinemaAddress,
         });

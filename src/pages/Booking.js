@@ -13,6 +13,12 @@ import axios from 'axios';
 import './Booking.css';
 
 const Booking = () => {
+  const [booked, setBooked] = useState([]);
+
+  const [status, setStatus] = useState([]);
+
+  const [bookingNum, setBookingNum] = useState(0);
+
   const { movieId } = useParams();
 
   const [error, setError] = useState(null);
@@ -51,6 +57,12 @@ const Booking = () => {
       <div className="booking-wrapper">
         <Navbar />
         <BookingTicket
+          booked={booked}
+          setBooked={setBooked}
+          status={status}
+          setStatus={setStatus}
+          bookingNum={bookingNum}
+          setBookingNum={setBookingNum}
           movie={movie}
           setIsLoading={setIsLoading}
           setError={setError}

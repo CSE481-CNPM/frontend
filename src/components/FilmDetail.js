@@ -33,10 +33,7 @@ function FilmDetail({ movieId, setIsLoading, setError }) {
   return (
     <div className="film-container">
       <div className="poster-film">
-        <img
-          src="https://photo-baomoi.zadn.vn/w720x480/2019_12_28_180_33466033/4f6c010ce94c0012595d.jpg"
-          alt=""
-        />
+        <img src={movie.avatar} alt="" />
         <div className="icon-play">
           <img
             src="https://simg.nicepng.com/png/small/11-118375_citekeeper-is-a-crowdsourced-play-icon-white-png.png"
@@ -45,10 +42,7 @@ function FilmDetail({ movieId, setIsLoading, setError }) {
         </div>
       </div>
       <div className="detail-film">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/vi/4/42/%C3%81p_ph%C3%ADch_phim_M%E1%BA%AFt_bi%E1%BA%BFc.jpg"
-          alt=""
-        />
+        <img src={movie.background} alt="" />
         <div className="detail">
           <h2>{movie.nameFilm}</h2>
           <Link to={`/booking/${movieId}`}>

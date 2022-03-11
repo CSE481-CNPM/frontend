@@ -81,7 +81,7 @@ function Navbar() {
               <li>
                 {isLoggedIn ? (
                   <a
-                    href={`/library/${auth.userId}`}
+                    href={`/library`}
                     className={tab === 3 ? 'active' : null}
                     onClick={() => setTab(3)}
                   >
@@ -113,7 +113,7 @@ function Navbar() {
                         <p>Quản trị hệ thống</p>
                       </Link>
                     )}
-                    <Link to={`/library/${auth.userId}`}>
+                    <Link to={`/library`}>
                       <p>Thư viện</p>
                     </Link>
                     <p onClick={logout}>Đăng xuất</p>

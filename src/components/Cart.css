@@ -1,0 +1,34 @@
+.Cart-container {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: 1px solid #515151;
+  padding: 30px;
+}
+.Cart-container > h3 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+.ticket-item {
+  width: 600px;
+  border: 1px solid #515151;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.ticket-item > div {
+  display: flex;
+}
+.ticket-item > div > p {
+  margin-bottom: 5px;
+  margin-right: 20px;
+  color: #aaaaaa;
+}
+.ticket-item > div > p > span {
+  color: #fff;
+}
+.ticket-item .wait {
+  color: red;
+  font-style: italic;
+}

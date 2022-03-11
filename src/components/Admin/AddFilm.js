@@ -15,7 +15,7 @@ function AddFilm({ setIsLoading, setError }) {
   const [startDate, setStartDate] = useState(new Date());
 
   const [namefilm, setNameFilm] = useState('');
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('Việt Nam');
   const [poster, setPoster] = useState('');
   const [avatar, setAvatar] = useState('');
   const [actor, setActor] = useState('');
@@ -24,6 +24,7 @@ function AddFilm({ setIsLoading, setError }) {
   const [category, setCategory] = useState('');
 
   const createMovieHandler = () => {
+    console.log('here');
     if (
       namefilm === '' ||
       country === '' ||

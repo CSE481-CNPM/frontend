@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './BoxPayment.css';
 
 function BoxPayment({ paymentIsShown, setPaymentIsShown, movie, paymentInfo }) {
@@ -14,30 +16,32 @@ function BoxPayment({ paymentIsShown, setPaymentIsShown, movie, paymentInfo }) {
     >
       <div className="overlay"></div>
       <div className="payment-detail">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          className="close"
-          focusable="false"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          onClick={closeModal}
-        >
-          <g data-name="Group 28027" fill="none">
-            <path data-name="Rectangle 4499" d="M0 0h24v24H0z"></path>
-            <g
-              data-name="Group 28346"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.3"
-            >
-              <path data-name="Line 22" d="M5 5l14 14"></path>
-              <path data-name="Line 23" d="M19 5L5 19"></path>
+        <Link to={'/'}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            className="close"
+            focusable="false"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            onClick={closeModal}
+          >
+            <g data-name="Group 28027" fill="none">
+              <path data-name="Rectangle 4499" d="M0 0h24v24H0z"></path>
+              <g
+                data-name="Group 28346"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.3"
+              >
+                <path data-name="Line 22" d="M5 5l14 14"></path>
+                <path data-name="Line 23" d="M19 5L5 19"></path>
+              </g>
             </g>
-          </g>
-        </svg>
+          </svg>
+        </Link>
         <div className="payment-infomation">
           <div className="info-film">
             <div className="film-title">
