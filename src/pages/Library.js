@@ -73,7 +73,7 @@ const Library = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="library-wrapper">
-        <Navbar />
+        <Navbar tab={3} />
         <Cart movieList={movieList} />
         <Footer />
       </div>

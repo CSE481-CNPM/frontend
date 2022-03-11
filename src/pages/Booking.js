@@ -55,7 +55,7 @@ const Booking = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="booking-wrapper">
-        <Navbar />
+        <Navbar tab={2} />
         <BookingTicket
           booked={booked}
           setBooked={setBooked}
