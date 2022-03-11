@@ -75,60 +75,42 @@ const App = () => {
   if (token) {
     routes = (
       <Routes>
-<<<<<<< HEAD
         <Route path="/" element={<Home />} />
         <Route path="/movie/:movieId" element={<Movie />} />
         <Route path="/booking/:movieId" element={<Booking />} />
-=======
-        <Route path='/' element={<Home />} />
-        <Route path='/movie/*' element={<Movie />} />
-        <Route path='/booking/*' element={<Booking />} />
 
-        <Route path='/authentication' element={<Navigate to='/' />} />
->>>>>>> phandung
+        <Route path="/library/:uid" element={<Library />} />
 
-        <Route path='/library/:uid' element={<Library />} />
-
-        <Route path='/admin' element={<MainLayout />}>
+        <Route path="/admin" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path='addmovie' element={<AddMovie />} />
+          <Route path="addmovie" element={<AddMovie />} />
         </Route>
 
         {/* {adminRoutes} */}
 
-        <Route path='/notfound' element={<NotFound />} />
-        <Route path='*' element={<Navigate to='/notfound' />} />
+        <Route path="/notfound" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/notfound" />} />
       </Routes>
     );
   } else {
     routes = (
       <Routes>
-<<<<<<< HEAD
         <Route path="/" element={<Home />} />
         <Route path="/movie/:movieId" element={<Movie />} />
         <Route path="/booking/:movieId" element={<Navigate to="/" />} />
-=======
-        <Route path='/' element={<Home />} />
-        <Route path='/movie/*' element={<Movie />} />
-        <Route path='/booking/*' element={<Booking />} />
->>>>>>> phandung
 
-        <Route path='/authentication' element={<Authentication />} />
+        <Route path="/authentication" element={<Authentication />} />
 
-<<<<<<< HEAD
         <Route path="/library/:uid" element={<Navigate to="/" />} />
-=======
-        <Route path='/library/:uid' element={<Library />} />
->>>>>>> phandung
 
-        <Route path='/admin' element={<MainLayout />}>
+        <Route path="/admin" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path='addmovie' element={<AddMovie />} />
+          <Route path="addmovie" element={<AddMovie />} />
         </Route>
         {/* {adminRoutes} */}
 
-        <Route path='/notfound' element={<NotFound />} />
-        <Route path='*' element={<Navigate to='/notfound' />} />
+        <Route path="/notfound" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/notfound" />} />
       </Routes>
     );
   }
