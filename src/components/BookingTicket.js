@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Screen from './Screen';
 import './BookingTicket.css';
 
-function BookingTicket({ movie }) {
+import { AuthContext } from '../shared/context/auth-context';
+import axios from 'axios';
+
+function BookingTicket({ movie, setIsLoading, setError }) {
+  const auth = useContext(AuthContext);
+
   const navigate = useNavigate();
   const [province, setProvince] = useState('Hà Nội');
   const [showMenuProvince, setShowMenuProvince] = useState(false);
@@ -25,22 +30,20 @@ function BookingTicket({ movie }) {
     {
       id: '1',
       name: 'CCV AEON Hà Đông',
-      address:
-        'Tầng 3&4 - TTTM AEON MALL Hà Đông , Dương nội , Hà Đông, Hà Nội',
+      address: 'Tầng 3&4 - TTTM AEON MALL Hà Đông, Dương Nội, Hà Đông, Hà Nội',
       showTime: ['17:00-19:00', '20:00-22:00', '7:00-9:00'],
     },
     {
       id: '2',
-      name: 'CCV AEON Hà Đông',
+      name: 'CCV AEON Long Biên',
       address:
-        'Tầng 3&4 - TTTM AEON MALL Hà Đông , Dương nội , Hà Đông, Hà Nội',
+        'Tầng 4 - TTTM AEON MALL Long Biên, 27 Cổ Linh, Long Biên, Hà Nội',
       showTime: ['17:00-19:00', '20:00-22:00', '7:00-9:00'],
     },
     {
       id: '3',
-      name: 'CCV AEON Hà Đông',
-      address:
-        'Tầng 3&4 - TTTM AEON MALL Hà Đông , Dương nội , Hà Đông, Hà Nội',
+      name: 'CCV Hồ Gươm Plaza',
+      address: 'Tầng 3 - Hồ Gươm Plaza, 110 Trần Phú, Mỗ Lao, Hà Đông, Hà Nội',
       showTime: ['17:00-19:00', '20:00-22:00', '7:00-9:00'],
     },
   ];
@@ -62,16 +65,92 @@ function BookingTicket({ movie }) {
   const handleStatusDay = (e) => {
     setStatusDay(e.target.id);
   };
+
+  const [booked, setBooked] = useState([]);
+
+  const [status, setStatus] = useState([]);
+
+  const [bookingNum, setBookingNum] = useState(0);
+
+  console.log(booked, status, bookingNum);
+
+  const fetchSeat = () => {
+    setIsLoading(true);
+    // console.log(
+    //   `/v1/seat?fid=${movie._id}&cid=${chooseTime.idCinema}&st=${
+    //     chooseTime.time.splice(0, 2) + '00'
+    //   }`
+    // );
+    axios({
+      method: 'get',
+      baseURL: process.env.REACT_APP_BACKEND_URL,
+      url: `/v1/seat?fid=${'6228e236ad89edcc05b8d6ef'}&cid=${'6224e9cf8e977590a674f4bc'}&st=${'1300'}`,
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
+      .then((res) => {
+        setBooked(res.data.seat);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.response.data.error);
+      });
+  };
+
   const onGetShowTime = (e) => {
     const obj = {
       idCinema: e.target.id,
       time: e.target.innerHTML,
     };
     setChooseTime(obj);
+
+    setBooked([]);
+    setStatus([]);
+    setBookingNum(0);
+    fetchSeat();
   };
 
   const bookingHandler = () => {
-    console.log('booking...');
+    if (
+      chooseTime.idCinema === '' ||
+      chooseTime.time === '' ||
+      status.length === 0
+    ) {
+      setError('Oops... Có vẻ bạn thiếu thông tin nào đó');
+      return;
+    }
+    console.log({
+      filmId: movie._id,
+      cinemaId: chooseTime.idCinema,
+      showTime: chooseTime.time,
+      seat: status[0],
+      room: 'P1',
+      price: 50000 * bookingNum,
+    });
+    // setIsLoading(true);
+    // axios({
+    //   method: 'post',
+    //   baseURL: process.env.REACT_APP_BACKEND_URL,
+    //   url: `/v1/ticket`,
+    //   body: {
+    //     filmId: movie._id,
+    //     cinemaId: chooseTime.idCinema,
+    //     showTime: chooseTime.time,
+    //     seat: chosenSeat[0],
+    //     room: 'P1',
+    //     price: 50000 * bookingNum,
+    //   },
+    // })
+    //   .then((res) => {
+    //     setBookedTicket(res.data.seat);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     setIsLoading(false);
+    //     setError(err.response.data.error);
+    //   });
   };
 
   return (
@@ -203,15 +282,20 @@ function BookingTicket({ movie }) {
               );
             })}
           </div>
-          <Screen></Screen>
+          <Screen
+            booked={booked}
+            status={status}
+            setStatus={setStatus}
+            setBookingNum={setBookingNum}
+          ></Screen>
         </div>
         <div className="payment">
           <div className="payment-info">
             <p>
-              Số lượng vé: <span>0</span>
+              Số lượng vé: <span>{bookingNum}</span>
             </p>
             <p>
-              Thành tiền : <span>0 VND</span>
+              Thành tiền: <span>{bookingNum * 50000} VND</span>
             </p>
           </div>
           <div className="payment-btn">

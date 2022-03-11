@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Screen.css';
 
-function Screen() {
-  const [status, setStatus] = useState([]);
-  const [booked, setBooked] = useState(['D4', 'A2', 'A5']);
+let bookingSeatNum = 0;
 
+function Screen({ booked, status, setStatus, setBookingNum }) {
   const onGetValue = (e, a) => {
     const seat = a + e.target.innerHTML;
+
     if (status.includes(seat)) {
+      bookingSeatNum--;
       const a1 = status.slice(0, status.indexOf(seat));
       const a2 = status.slice(status.indexOf(seat) + 1, status.length);
       let new_arr = a1.concat(a2);
+      setBookingNum((prevState) => prevState - 1);
       setStatus(new_arr);
     } else {
+      if (bookingSeatNum === 1) {
+        return;
+      }
+      bookingSeatNum++;
+      setBookingNum((prevState) => prevState + 1);
       setStatus([...status, seat]);
     }
   };
+
   return (
     <div className="screen">
       <h2>Chỗ ngồi</h2>

@@ -50,7 +50,11 @@ const Booking = () => {
       {isLoading && <LoadingSpinner />}
       <div className="booking-wrapper">
         <Navbar />
-        <BookingTicket movie={movie} />
+        <BookingTicket
+          movie={movie}
+          setIsLoading={setIsLoading}
+          setError={setError}
+        />
         <Footer />
       </div>
     </React.Fragment>
