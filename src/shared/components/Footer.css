@@ -19,7 +19,15 @@
 .policy,
 .support,
 .connect {
+  width: 100% !important;
+}
+.footer-license .img-wrapper {
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.footer-license .img-wrapper img {
+  max-width: 110px;
 }
 .footer-policy .title {
   font-size: 24px;

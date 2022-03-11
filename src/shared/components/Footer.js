@@ -26,9 +26,9 @@ function Footer() {
           <div className="support">
             <h3 className="title">Hỗ trợ</h3>
             <ul>
-              <li>địa chỉ : Hà nội</li>
-              <li>Hotline : 093456789</li>
-              <li>Email : nitflex@gmail.com</li>
+              <li>Địa chỉ: Hà Nội</li>
+              <li>Hotline: 093456789</li>
+              <li>Email: nitflex@gmail.com</li>
             </ul>
           </div>
           <div className="connect">
@@ -50,7 +50,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-license">
-          <div>
+          <div className="img-wrapper">
             <img
               src="https://lh3.googleusercontent.com/fife/AAWUweWeYsBEcTdmdhh2HYx--4hDFgdhtdMrRG3gVsJOpAR0omKSl8Idx2D67-PHWsqraqAWYq61bg0CE-gpkugGdNrMP6OWgal7BpKFQnV_Jr96Fqcq9bczYWQbQ0Bswf2mjQwEnchPIKiwkjX0S3eYllr4hydWiLHM7Jb5o1S69py3Lddvsf1LB9q3PuYV4pVMQRq61a_r5GDrmU8G017A_T7iGe9ZEv26EyZ5zIDkc75e1XDtuUsZpGBqhy_zEG78Jq1USSoqrVPQewvVKhTVa0fIzZZ_MhFpFg0nNQzMctoVTQhy2ylZIZk93BuKmlL2kZC8gCl83f-zErvQ-ITbquvTJ8gY1V9BUNtlVtzsNoLow6Qg9OOO2pwuZvm1-Ns8q9SJi1_P5Nk4kXHYsmqC5s-A5MHPWe8AXszORLbEnIDXx6h_pZjaRwxMExH5xx-Z7CneQvf05Yx7syhCRZoSggBWohPeSYtwEumJiUCGE7nyYxIHC1bOdCwtJcZxDMVoJobcBEpbWfBjg3TEXP9jsCfKQm1ueOMMDZtPiTxv0HpQQ4boccSAq3Mhhc-GVSkyA6Ld_UYISAuwW1iKKRVGUNltGPM8Ade4qOkpaZMDmbhh0t8eCk8xeFpqUNVRaW1LzpJ6qgLBffQEE0ppZKhTHOFrP3CxP34U6ATt5rXkbrbhPjVdMWHbVspoeHzWvYEM1dlzacwoaioaLxwe4Gh7rZz6Zx0=w200-h190-p-k-nu"
               alt=""
