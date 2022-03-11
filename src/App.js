@@ -10,10 +10,10 @@ import Booking from './pages/Booking';
 import Library from './pages/Library';
 import Authentication from './pages/Authentication';
 import NotFound from './pages/NotFound';
-import AddMovie from './pages/Admin/AddMovie';
 import LoadingSpinner from './shared/components/LoadingSpinner';
 import MainLayout from './layout/MainLayout';
 import Dashboard from './pages/Admin/Dashboard';
+import AddMovie from './pages/Admin/AddMovie';
 
 import './assets/libs/boxicons-2.1.1/css/boxicons.min.css';
 import './scss/App.scss';
@@ -52,6 +52,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/movie/:movieId" element={<Movie />} />
         <Route path="/booking/:movieId" element={<Booking />} />
+
+        <Route path="/authentication" element={<Navigate to="/" />} />
 
         <Route path="/library/:uid" element={<Library />} />
 

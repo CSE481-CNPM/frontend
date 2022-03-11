@@ -23,7 +23,7 @@ function MovieIsPlay({ movieList }) {
             <CardFilm
               key={item._id}
               movieId={item._id}
-              poster={item.urlImg}
+              poster={item.avatar}
               movieName={item.nameFilm}
               category={item.category}
             />
