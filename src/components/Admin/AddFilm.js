@@ -39,12 +39,32 @@ function AddFilm() {
           </select>
         </div>
         <div className='form-group'>
+          <label className='form-label'>Ngày phát hành</label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            className='form-input'
+          />
+        </div>
+      </div>
+      <div className='frame'>
+        <div className='form-group'>
           <label className='form-label'>Poster</label>
           <input
-            type='file'
+            type='text'
             name='poster'
             className='form-input'
-            onChange={(e) => setPoster(e.target.files[0])}
+            onChange={(e) => setPoster(e.target.value)}
+          />
+        </div>
+
+        <div className='form-group'>
+          <label className='form-label'>Avatar</label>
+          <input
+            type='text'
+            name='avatar'
+            className='form-input'
+            onChange={(e) => setAvatar(e.target.value)}
           />
         </div>
       </div>
@@ -60,25 +80,6 @@ function AddFilm() {
             onChange={(e) => setDirector(e.target.value)}
           />
         </div>
-        <div className='form-group'>
-          <label className='form-label'>Ngày phát hành</label>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            className='form-input'
-          />
-        </div>
-        <div className='form-group'>
-          <label className='form-label'>Avatar</label>
-          <input
-            type='file'
-            name='avatar'
-            className='form-input'
-            onChange={(e) => setAvatar(e.target.files[0])}
-          />
-        </div>
-      </div>
-      <div className='frame'>
         <div className='form-group'>
           <label className='form-label'>Diễn viên</label>
           <input

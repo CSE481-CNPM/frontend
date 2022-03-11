@@ -6,8 +6,8 @@ const sidebarNav = [
     text: 'Home',
   },
   {
-    link: '/addfilm',
-    section: 'addfilm',
+    link: '/addmovie',
+    section: 'addmovie',
     icon: <i className='bx bx-receipt'></i>,
     text: 'Create new Movie',
   },

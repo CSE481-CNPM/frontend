@@ -10,9 +10,13 @@ import Booking from './pages/Booking';
 import Library from './pages/Library';
 import Authentication from './pages/Authentication';
 import NotFound from './pages/NotFound';
-
+import AddMovie from './pages/Admin/AddMovie';
 import LoadingSpinner from './shared/components/LoadingSpinner';
+import MainLayout from './layout/MainLayout';
+import Dashboard from './pages/Admin/Dashboard';
 
+import './assets/libs/boxicons-2.1.1/css/boxicons.min.css';
+import './scss/App.scss';
 // const Home = React.lazy(() => import('./pages/Home'));
 // const Movie = React.lazy(() => import('./pages/Movie'));
 // const Booking = React.lazy(() => import('./pages/Booking'));
@@ -71,37 +75,44 @@ const App = () => {
   if (token) {
     routes = (
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie/*" element={<Movie />} />
-        <Route path="/booking/*" element={<Booking />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/movie/*' element={<Movie />} />
+        <Route path='/booking/*' element={<Booking />} />
 
-        <Route path="/authentication" element={<Navigate to="/" />} />
+        <Route path='/authentication' element={<Navigate to='/' />} />
 
-        <Route path="/library/:uid" element={<Library />} />
+        <Route path='/library/:uid' element={<Library />} />
 
-        <Route path="/admin" element={<NotFound />} />
+        <Route path='/admin' element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='addmovie' element={<AddMovie />} />
+        </Route>
+
         {/* {adminRoutes} */}
 
-        <Route path="/notfound" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/notfound" />} />
+        <Route path='/notfound' element={<NotFound />} />
+        <Route path='*' element={<Navigate to='/notfound' />} />
       </Routes>
     );
   } else {
     routes = (
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie/*" element={<Movie />} />
-        <Route path="/booking/*" element={<Booking />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/movie/*' element={<Movie />} />
+        <Route path='/booking/*' element={<Booking />} />
 
-        <Route path="/authentication" element={<Authentication />} />
+        <Route path='/authentication' element={<Authentication />} />
 
-        <Route path="/library/:uid" element={<Library />} />
+        <Route path='/library/:uid' element={<Library />} />
 
-        <Route path="/admin" element={<NotFound />} />
+        <Route path='/admin' element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='addmovie' element={<AddMovie />} />
+        </Route>
         {/* {adminRoutes} */}
 
-        <Route path="/notfound" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/notfound" />} />
+        <Route path='/notfound' element={<NotFound />} />
+        <Route path='*' element={<Navigate to='/notfound' />} />
       </Routes>
     );
   }
