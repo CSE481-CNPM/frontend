@@ -1,7 +1,7 @@
 import React from 'react';
 import AddFilm from '../../components/Admin/AddFilm';
 
-const Blank = () => {
+const AddMovie = () => {
   return (
     <div>
       <AddFilm />
@@ -9,4 +9,4 @@ const Blank = () => {
   );
 };
 
-export default Blank;
+export default AddMovie;
