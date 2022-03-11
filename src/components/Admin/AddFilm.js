@@ -52,6 +52,7 @@ function AddFilm() {
           <label className='form-label'>Poster</label>
           <input
             type='text'
+            placeholder='Thêm ảnh bìa'
             name='poster'
             className='form-input'
             onChange={(e) => setPoster(e.target.value)}
@@ -64,6 +65,7 @@ function AddFilm() {
             type='text'
             name='avatar'
             className='form-input'
+            placeholder='Thêm ảnh đại diện'
             onChange={(e) => setAvatar(e.target.value)}
           />
         </div>
