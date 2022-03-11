@@ -57,7 +57,7 @@ const Movie = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="movie-wrapper">
-        <Navbar />
+        <Navbar tab={2} />
         <FilmDetail
           movieId={movieId}
           setIsLoading={setIsLoading}
