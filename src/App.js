@@ -30,47 +30,21 @@ const App = () => {
   let routes;
   let adminRoutes;
 
-  // if (isAdmin !== '0' && isAdmin !== null) {
-  //   adminRoutes = (
-  //     <Route path="/admin" element={<Admin />}>
-  //       <Route
-  //         path="dashboard"
-  //         element={<Layout location={'/admin/dashboard'} />}
-  //       />
-  //       <Route
-  //         path="flights"
-  //         element={<Layout location={'/admin/flights'} />}
-  //       />
-  //       <Route
-  //         path="add-flight"
-  //         element={<Layout location={'/admin/add-flight'} />}
-  //       />
-  //       <Route
-  //         path="accounts"
-  //         element={<Layout location={'/admin/accounts'} />}
-  //       />
-  //       <Route
-  //         path="passengers"
-  //         element={<Layout location={'/admin/passengers'} />}
-  //       />
-  //       <Route
-  //         path="invoice-detail"
-  //         element={<Layout location={'/admin/invoice-detail'} />}
-  //       />
-  //     </Route>
-  //   );
-  // } else {
-  //   adminRoutes = (
-  //     <Route path="/admin" element={<Admin />}>
-  //       <Route path="dashboard" element={<Navigate to="/" />} />
-  //       <Route path="customers" element={<Navigate to="/" />} />
-  //       <Route path="products" element={<Navigate to="/" />} />
-  //       <Route path="accounts" element={<Navigate to="/" />} />
-  //       <Route path="passengers" element={<Navigate to="/" />} />
-  //       <Route path="invoice-detail" element={<Navigate to="/" />} />
-  //     </Route>
-  //   );
-  // }
+  if (isAdmin === 'admin') {
+    adminRoutes = (
+      <Route path="/admin" element={<MainLayout />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="add-movie" element={<Blank />} />
+      </Route>
+    );
+  } else {
+    adminRoutes = (
+      <Route path="/admin" element={<MainLayout />}>
+        <Route path="dashboard" element={<Navigate to="/" />} />
+        <Route path="add-movie" element={<Navigate to="/" />} />
+      </Route>
+    );
+  }
 
   if (token) {
     routes = (
@@ -81,12 +55,8 @@ const App = () => {
 
         <Route path="/library/:uid" element={<Library />} />
 
-        <Route path="/admin" element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="addmovie" element={<AddMovie />} />
-        </Route>
-
-        {/* {adminRoutes} */}
+        <Route path="/admin" element={<NotFound />} />
+        {adminRoutes}
 
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />
@@ -103,11 +73,8 @@ const App = () => {
 
         <Route path="/library/:uid" element={<Navigate to="/" />} />
 
-        <Route path="/admin" element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="addmovie" element={<AddMovie />} />
-        </Route>
-        {/* {adminRoutes} */}
+        <Route path="/admin" element={<NotFound />} />
+        {adminRoutes}
 
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />
