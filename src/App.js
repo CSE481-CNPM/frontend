@@ -34,7 +34,7 @@ const App = () => {
     adminRoutes = (
       <Route path="/admin" element={<MainLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="add-movie" element={<Blank />} />
+        <Route path="add-movie" element={<AddMovie />} />
       </Route>
     );
   } else {

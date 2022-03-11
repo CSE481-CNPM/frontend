@@ -6,15 +6,9 @@ const sidebarNav = [
     text: 'Home',
   },
   {
-<<<<<<< HEAD
-    link: '/admin/addmovie',
-    section: 'addmovie',
-    icon: <i className='bx bx-receipt'></i>,
-=======
     link: '/add-movie',
     section: 'addfilm',
     icon: <i className="bx bx-receipt"></i>,
->>>>>>> tuananh
     text: 'Create new Movie',
   },
   {
