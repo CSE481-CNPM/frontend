@@ -1,6 +1,6 @@
 const sidebarNav = [
   {
-    link: '/',
+    link: 'dashboard',
     section: 'home',
     icon: <i className="bx bx-home-alt"></i>,
     text: 'Home',
@@ -12,10 +12,10 @@ const sidebarNav = [
     text: 'Create New Movie',
   },
   {
-    link: '/',
+    link: 'account',
     section: 'products',
     icon: <i className="bx bx-cube"></i>,
-    text: 'Products',
+    text: 'Account',
   },
   {
     link: '/',

@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import MovieIsPlay from '../components/MovieIsPlay';
 import Cart from '../components/Cart';
+
+import Modal from '../shared/components/Modal';
+import Button from '../shared/components/Button';
 
 import { AuthContext } from '../shared/context/auth-context';
 
@@ -22,6 +26,12 @@ const Library = () => {
     setError(null);
   };
   const [isLoading, setIsLoading] = useState(false);
+
+  const [modalIsShown, setModalIsShown] = useState(false);
+
+  const closeModal = () => {
+    setModalIsShown(false);
+  };
 
   const [movieList, setMovieList] = useState([]);
 
@@ -70,11 +80,35 @@ const Library = () => {
 
   return (
     <React.Fragment>
+      <Modal
+        onCancel={closeModal}
+        header="Oops..."
+        show={modalIsShown}
+        footer={
+          <>
+            <span className="close-modal-btn" onClick={closeModal}>
+              Hủy
+            </span>
+            <Button>
+              <Link to={'/library'} onClick={closeModal}>
+                <p className="confirm-login-btn">Hủy vé</p>
+              </Link>
+            </Button>
+          </>
+        }
+      >
+        <p>Bạn muốn hủy vé? Lưu ý hành động này không thể hoàn tác</p>
+      </Modal>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="library-wrapper">
         <Navbar tab={3} />
-        <Cart movieList={movieList} />
+        <Cart
+          movieList={movieList}
+          setIsLoading={setIsLoading}
+          setError={setError}
+          setModalIsShown={setModalIsShown}
+        />
         <Footer />
       </div>
     </React.Fragment>

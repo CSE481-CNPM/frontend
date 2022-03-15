@@ -97,11 +97,11 @@ function BookingTicket({
     setBooked([]);
     setStatus([]);
     setBookingNum(0);
-    setIsLoading(true);
+    // setIsLoading(true);
     axios({
       method: 'get',
       baseURL: process.env.REACT_APP_BACKEND_URL,
-      url: `/v1/seat?fid=${movie._id}&cid=${'6224e9ce8e977590a674f4b3'}&st=${
+      url: `/v1/seat?fid=${movie._id}&cid=${chooseTime.idCinema}&st=${
         chooseTime.time.substr(0, 2) + '00'
       }`,
       headers: {

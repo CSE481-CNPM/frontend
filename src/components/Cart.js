@@ -2,7 +2,11 @@ import React from 'react';
 
 import './Cart.css';
 
-function Cart({ movieList }) {
+function Cart({ movieList, setIsLoading, setError, setModalIsShown }) {
+  const cancelHandler = () => {
+    setModalIsShown(true);
+  };
+
   return (
     <div className="Cart-container">
       <h3>Các vé đã đặt: </h3>
@@ -40,6 +44,11 @@ function Cart({ movieList }) {
               <p>
                 Trạng thái: <span className="wait">Chờ xác nhận</span>
               </p>
+            </div>
+            <div>
+              <button className="cancel-btn" onClick={cancelHandler}>
+                Hủy vé
+              </button>
             </div>
           </div>
         ))}

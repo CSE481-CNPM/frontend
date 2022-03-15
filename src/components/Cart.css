@@ -11,7 +11,7 @@
   margin-bottom: 20px;
 }
 .ticket-item {
-  width: 600px;
+  width: 100%;
   border: 1px solid #515151;
   padding: 15px;
   border-radius: 5px;
@@ -31,4 +31,13 @@
 .ticket-item .wait {
   color: red;
   font-style: italic;
+}
+.cancel-btn {
+  border: none;
+  padding: 10px 30px;
+  margin: 10px 0;
+  background: white;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
 }

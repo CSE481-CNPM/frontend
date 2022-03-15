@@ -8,6 +8,10 @@ function Screen({ booked, status, setStatus, setBookingNum }) {
   const onGetValue = (e, a) => {
     const seat = a + e.target.innerHTML;
 
+    if (booked.includes(a + e.target.innerHTML)) {
+      return;
+    }
+
     if (status.includes(seat)) {
       bookingSeatNum--;
       const a1 = status.slice(0, status.indexOf(seat));

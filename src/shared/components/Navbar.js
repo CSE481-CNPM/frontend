@@ -108,14 +108,17 @@ function Navbar({ tab }) {
                 />
                 {showMenu ? (
                   <div className="nav-menu-box">
-                    {auth.isAdmin && auth.isAdmin !== 'user' && (
-                      <Link to={`/admin/dashboard`}>
-                        <p>Quản trị hệ thống</p>
-                      </Link>
-                    )}
+                    <Link to={`/notifications`}>
+                      <p>Thông báo</p>
+                    </Link>
                     <Link to={`/library`}>
                       <p>Thư viện</p>
                     </Link>
+                    {auth.isAdmin && auth.isAdmin !== 'user' && (
+                      <Link to={`/admin/dashboard`}>
+                        <p>Quản trị</p>
+                      </Link>
+                    )}
                     <p onClick={logout}>Đăng xuất</p>
                   </div>
                 ) : null}
