@@ -4,11 +4,12 @@ import './Screen.css';
 
 let bookingSeatNum = 0;
 
-function Screen({ booked, status, setStatus, setBookingNum }) {
+function Screen({ isTouched, booked, status, setStatus, setBookingNum }) {
   const onGetValue = (e, a) => {
     const seat = a + e.target.innerHTML;
 
-    if (booked.includes(a + e.target.innerHTML)) {
+    if (!isTouched || booked.includes(a + e.target.innerHTML)) {
+      console.log('here');
       return;
     }
 

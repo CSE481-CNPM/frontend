@@ -112,7 +112,10 @@ function BookingTicket({
       });
   };
 
+  const [isTouched, setIsTouched] = useState(false);
+
   const onGetShowTime = (e) => {
+    setIsTouched(true);
     const obj = {
       idCinema: e.target.id,
       cinemaName: apiCinema.find((el) => el.id === e.target.id).name,
@@ -308,6 +311,7 @@ function BookingTicket({
               })}
             </div>
             <Screen
+              isTouched={isTouched}
               booked={booked}
               status={status}
               setStatus={setStatus}
