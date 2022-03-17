@@ -96,7 +96,7 @@ const Library = () => {
       .then((res) => {
         setModalIsShown(false);
         setIsLoading(false);
-        navigate('/library');
+        window.location.reload();
       })
       .catch((err) => {
         setIsLoading(false);
