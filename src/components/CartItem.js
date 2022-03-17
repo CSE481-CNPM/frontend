@@ -54,7 +54,7 @@ const CartItem = ({
       </div>
       <div>
         {movie.status === 'booked' &&
-        new Date() >=
+        new Date() <
           new Date(
             movie.movieDay.toString().substr(0, 11) +
               movie.showTime +
@@ -66,6 +66,8 @@ const CartItem = ({
           >
             Hủy vé
           </button>
+        ) : movie.status === 'cancelled' ? (
+          <span className="wait">Phim đã hủy</span>
         ) : (
           <span className="wait">Phim đã chiếu</span>
         )}

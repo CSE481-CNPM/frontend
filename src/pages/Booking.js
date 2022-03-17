@@ -53,20 +53,24 @@ const Booking = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {isLoading && <LoadingSpinner />}
       <div className="booking-wrapper">
         <Navbar tab={2} />
-        <BookingTicket
-          booked={booked}
-          setBooked={setBooked}
-          status={status}
-          setStatus={setStatus}
-          bookingNum={bookingNum}
-          setBookingNum={setBookingNum}
-          movie={movie}
-          setIsLoading={setIsLoading}
-          setError={setError}
-        />
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <BookingTicket
+            booked={booked}
+            setBooked={setBooked}
+            status={status}
+            setStatus={setStatus}
+            bookingNum={bookingNum}
+            setBookingNum={setBookingNum}
+            movie={movie}
+            setIsLoading={setIsLoading}
+            setError={setError}
+          />
+        )}
+
         <Footer />
       </div>
     </React.Fragment>

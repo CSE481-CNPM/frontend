@@ -25,7 +25,7 @@ function BookingTicket({
   const [showMenuProvince, setShowMenuProvince] = useState(false);
   const [statusDay, setStatusDay] = useState(0);
   const [chooseTime, setChooseTime] = useState({
-    idCinema: '',
+    idCinema: movie._id,
     cinemaName: '',
     cinemaAddress: '',
     time: '',
@@ -79,12 +79,6 @@ function BookingTicket({
     setStatusDay(e.target.id);
   };
 
-  // const [booked, setBooked] = useState([]);
-
-  // const [status, setStatus] = useState([]);
-
-  // const [bookingNum, setBookingNum] = useState(0);
-
   console.log(
     movie._id,
     booked,
@@ -93,7 +87,7 @@ function BookingTicket({
     chooseTime.time.substr(0, 5)
   );
 
-  const fetchSeat = () => {
+  const fetchSeat = (chooseTime) => {
     setBooked([]);
     setStatus([]);
     setBookingNum(0);
@@ -119,8 +113,6 @@ function BookingTicket({
   };
 
   const onGetShowTime = (e) => {
-    fetchSeat();
-
     const obj = {
       idCinema: e.target.id,
       cinemaName: apiCinema.find((el) => el.id === e.target.id).name,
@@ -128,6 +120,7 @@ function BookingTicket({
       time: e.target.innerHTML,
     };
     setChooseTime(obj);
+    fetchSeat(obj);
   };
 
   const [paymentInfo, setPaymentInfo] = useState({});
@@ -144,19 +137,6 @@ function BookingTicket({
       return;
     }
     setIsLoading(true);
-    console.log({
-      time: chooseTime.time.substr(0, 5),
-      cinemaName: chooseTime.cinemaName,
-      cinemaAddress: chooseTime.cinemaAddress,
-    });
-    console.log({
-      filmId: movie._id,
-      cinemaId: chooseTime.idCinema,
-      showTime: chooseTime.time.substr(0, 5),
-      seat: status[0],
-      room: 'P1',
-      price: 50000 * bookingNum,
-    });
     axios({
       method: 'post',
       baseURL: process.env.REACT_APP_BACKEND_URL,
@@ -176,12 +156,14 @@ function BookingTicket({
       .then((res) => {
         console.log(res.data);
         setIsLoading(false);
-        setPaymentInfo({
-          time: chooseTime.time.substr(0, 5),
-          cinemaName: chooseTime.cinemaName,
-          cinemaAddress: chooseTime.cinemaAddress,
-        });
-        setPaymentIsShown(true);
+        navigate('/library');
+        // setPaymentInfo({
+        //   time: chooseTime.time.substr(0, 5),
+        //   cinemaName: chooseTime.cinemaName,
+        //   cinemaAddress: chooseTime.cinemaAddress,
+        // });
+        // setPaymentIsShown(true);
+        // console.log(paymentIsShown);
       })
       .catch((err) => {
         setIsLoading(false);
