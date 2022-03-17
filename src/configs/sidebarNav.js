@@ -13,13 +13,13 @@ const sidebarNav = [
   },
   {
     link: 'movie',
-    section: 'products',
+    section: 'Movie',
     icon: <i className="bx bx-cube"></i>,
     text: 'Movie',
   },
   {
-    link: 'account',
-    section: 'customers',
+    link: 'accounts',
+    section: 'accounts',
     icon: <i className="bx bx-user"></i>,
     text: 'Account',
   },

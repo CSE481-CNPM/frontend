@@ -60,4 +60,21 @@
 }
 .delete-admin:hover {
   background-color: #aa0f0fe4;
+.update,
+.delete-ticket {
+  padding: 8px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  color: #fff;
+  cursor: pointer;
+}
+.delete-ticket {
+  background-color: #dd2342;
+}
+.update {
+  background-color: #10a5a5;
+}
+.update:hover,
+.delete-ticket:hover {
+  opacity: 0.8;
 }

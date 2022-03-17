@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.87);
-  z-index: 100;
+  z-index: 1000;
 }
 
 .lds-dual-ring {
@@ -42,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 999;
 }
 
 @keyframes lds-dual-ring {

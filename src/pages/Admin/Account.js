@@ -1,250 +1,130 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react';
-
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import Table from '../../components/Admin/Table';
-
 import { AuthContext } from '../../shared/context/auth-context';
+
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
-import ErrorModal from '../../shared/components/ErrorModal';
 import axios from 'axios';
-
-// import accountList from '../../assets/JsonData/account-list.json';
 import './Account.css';
-
-const Accounts = () => {
+function Account() {
   const auth = useContext(AuthContext);
+  const [account, setAccount] = useState([]);
 
-  const [accountList, setAccountList] = useState();
-
+  const [flag, setFlag] = useState(false);
   const [error, setError] = useState(null);
-  const clearError = () => {
-    setError(null);
-  };
-
   const [isLoading, setIsLoading] = useState(true);
 
-  const triggerLoading = () => {
-    setIsLoading(true);
-    axios({
-      method: 'get',
-      baseURL: process.env.REACT_APP_BACKEND_URL,
-      url: '/users',
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    })
-      .then((res) => {
-        setAccountList(res.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
-  };
-
-  const customerTableHead = [
-    'ID',
-    'Email',
-    'Username',
-    'Phân Loại',
-    '',
-    'Quản trị',
-    '',
-  ];
-
-  const renderHead = (item, index) => <th key={index}>{item}</th>;
-
-  const renderBody = (item, index) =>
-    item.IsAdmin === '1' ? (
-      <tr key={index}>
-        <td>{item.id}</td>
-        <td>{item.Email}</td>
-        <td>{item.Username}</td>
-        <td>Người sử dụng</td>
-        <td>
-          <span className="addAdmin" onClick={() => handleUpdate(item.id, 1)}>
-            Thêm quản trị viên
-          </span>
-        </td>
-        <td>
-          <span className="delete-admin" onClick={() => handleDelete(item.id)}>
-            Xóa
-          </span>
-        </td>
-      </tr>
-    ) : (
-      <tr key={index}>
-        <td>{item.id}</td>
-        <td>{item.Email}</td>
-        <td>{item.Username}</td>
-        <td>Quản trị viên</td>
-        <td>
-          <span
-            className="delete-admin"
-            onClick={() => handleUpdate(item.id, 0)}
-          >
-            Xóa quản trị viên
-          </span>
-        </td>
-        <td></td>
-        <td>
-          <span className="delete-admin" onClick={() => handleDelete(item.id)}>
-            Xóa
-          </span>
-        </td>
-      </tr>
-    );
-
-  const handleUpdate = (id, flag) => {
-    setIsLoading(true);
-    axios({
-      method: 'put',
-      baseURL: process.env.REACT_APP_BACKEND_URL,
-      url: `/users/${id}`,
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-      data: {
-        IsAdmin: flag === 0 ? 0 : flag === 1 ? 1 : 2,
-      },
-    })
-      .then((res) => {
-        triggerLoading();
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
-  };
-
-  const handleDelete = (id) => {
-    setIsLoading(true);
-    axios({
-      method: 'delete',
-      baseURL: process.env.REACT_APP_BACKEND_URL,
-      url: `/users/${id}`,
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-      data: {
-        id: id,
-      },
-    })
-      .then((res) => {
-        triggerLoading();
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
-  };
-
-  const filterData = (id = null, isadmin = null) => {
-    setIsLoading(true);
-    axios({
-      method: 'post',
-      baseURL: process.env.REACT_APP_BACKEND_URL,
-      url: `/users/search`,
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-      data: {
-        id: id,
-        IsAdmin: isadmin,
-      },
-    })
-      .then((res) => {
-        setAccountList(res.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
-  };
-
+  const customerTableHead = ['STT', 'UserName', 'email', 'Quyền', 'Phân quyền'];
+  console.log(account);
   useEffect(() => {
     const fetchData = async () => {
       axios({
         method: 'get',
         baseURL: process.env.REACT_APP_BACKEND_URL,
-        url: '/users',
+        url: '/v1/auth/user',
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },
       })
-        .then((res) => setAccountList(res.data))
+        .then((res) => {
+          setAccount(res.data.users);
+          setFlag(true);
+        })
         .catch((err) => setError(err.message));
     };
     fetchData();
     setIsLoading(false);
   }, []);
 
-  const onInputKeyUp = (e) => {
-    if (e.key === 'Enter' || e.keyCode === 13) {
-      filterData(e.target.value);
-    }
-  };
+  const renderHead = (item, index) => <th key={index}>{item}</th>;
+  const renderBody = (item, index) => (
+    <tr key={item._id}>
+      <td>{index + 1}</td>
+      <td>{item.firstname + ' ' + item.lastname}</td>
+      <td>{item.email}</td>
+      <td>{item.role}</td>
 
-  const onClickHandler = (e) => {
-    filterData(null, e.target.value);
+      {item.role === 'admin' ? (
+        <td>
+          <span
+            className="delete-ticket"
+            onClick={() => handleUpdate(item, 'user')}
+          >
+            Xóa Admin
+          </span>
+        </td>
+      ) : (
+        <td>
+          <span className="update" onClick={() => handleUpdate(item, 'admin')}>
+            Thêm Admin
+          </span>
+        </td>
+      )}
+    </tr>
+  );
+  // function
+  function triggerLoading() {
+    axios({
+      method: 'get',
+      baseURL: process.env.REACT_APP_BACKEND_URL,
+      url: '/v1/auth/user',
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
+      .then((res) => {
+        setAccount(res.data.users);
+        setIsLoading(false);
+        setFlag(true);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
+      });
+  }
+  console.log(flag);
+  const handleUpdate = (e, quyen) => {
+    const confirmBox = window.confirm(
+      'Bạn có chắc muốn thay đổi quyền của tài khoản này'
+    );
+    if (confirmBox) {
+      setIsLoading(true);
+      setFlag(false);
+      axios({
+        method: 'put',
+        baseURL: process.env.REACT_APP_BACKEND_URL,
+        url: `/v1/auth/user/${e._id}/role`,
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+        data: {
+          role: quyen,
+        },
+      })
+        .then((res) => {
+          triggerLoading();
+          window.alert('Thay đổi thành công');
+        })
+        .catch((err) => setError(err.message));
+    }
   };
 
   return (
     <Fragment>
-      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && <LoadingSpinner />}
+
       <div>
-        <h2 className="page-header">Thông Tin Tài Khoản</h2>
-        <div className="row heading">
-          <div className="search-id">
-            <input
-              className="admin-input"
-              type="text"
-              placeholder="Nhập ID"
-              onKeyUp={onInputKeyUp}
-            />
-            <i className="bx bx-search"></i>
-          </div>
-          <div className="">
-            <div className="page-card">
-              <div className="page-card__body ">
-                <div className="select">
-                  <select
-                    name="ticket-type"
-                    id="ticket-type"
-                    className="ticket-option"
-                    onChange={onClickHandler}
-                  >
-                    <option value="">Tất cả</option>
-                    <option value="1">Quản trị viên</option>
-                    <option value="0">Người sử dụng</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="page-card">
-              <div className="page-card__body">
-                {isLoading && <LoadingSpinner />}
-                {!isLoading && accountList && (
-                  <Table
-                    limit="10"
-                    headData={customerTableHead}
-                    renderHead={(item, index) => renderHead(item, index)}
-                    bodyData={accountList}
-                    renderBody={(item, index) => renderBody(item, index)}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+        {account.length > 0 && flag ? (
+          <Table
+            limit="8"
+            headData={customerTableHead}
+            renderHead={(item, index) => renderHead(item, index)}
+            renderBody={(item, index) => renderBody(item, index)}
+            bodyData={account}
+          />
+        ) : null}
       </div>
     </Fragment>
   );
-};
+}
 
-export default Accounts;
+export default Account;

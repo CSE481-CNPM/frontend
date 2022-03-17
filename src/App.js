@@ -15,10 +15,10 @@ import LoadingSpinner from './shared/components/LoadingSpinner';
 import MainLayout from './layout/MainLayout';
 import Dashboard from './pages/Admin/Dashboard';
 import AddMovie from './pages/Admin/AddMovie';
-import Account from './pages/Admin/Account';
-
+import Movies from './pages/Admin/Movies';
 import './assets/libs/boxicons-2.1.1/css/boxicons.min.css';
 import './scss/App.scss';
+import Account from './pages/Admin/Account';
 // const Home = React.lazy(() => import('./pages/Home'));
 // const Movie = React.lazy(() => import('./pages/Movie'));
 // const Booking = React.lazy(() => import('./pages/Booking'));
@@ -37,6 +37,7 @@ const App = () => {
       <Route path="/admin" element={<MainLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="add-movie" element={<AddMovie />} />
+        <Route path="movie" element={<Movies />} />
         <Route path="account" element={<Account />} />
       </Route>
     );
@@ -44,6 +45,8 @@ const App = () => {
     adminRoutes = (
       <Route path="/admin" element={<MainLayout />}>
         <Route path="dashboard" element={<Navigate to="/" />} />
+        <Route path="add-movie" element={<Navigate to="/" />} />
+        <Route path="movie" element={<Navigate to="/" />} />
         <Route path="account" element={<Navigate to="/" />} />
       </Route>
     );

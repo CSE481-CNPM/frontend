@@ -6,10 +6,12 @@ table {
   width: 100%;
   min-width: 500px;
   border-spacing: 0;
+  background-color: #fafafb;
+  border-radius: 5px;
 }
 
 thead {
-  background-color: var(--second-bg);
+  background-color: #fafafb;
 }
 table::-webkit-scrollbar {
   height: 4px;
@@ -28,6 +30,8 @@ tbody > tr:hover {
   background-color: var(--main-color);
   color: var(--txt-white);
   cursor: pointer;
+  background-color: #eaeaea;
+  width: 100%;
 }
 
 .table__pagination {
@@ -54,12 +58,12 @@ tbody > tr:hover {
 
 .table__pagination-item.active,
 .table__pagination-item.active:hover {
-  background-color: var(--main-color);
-  color: var(--txt-white);
+  background-color: #349eff;
+  color: #fff;
   font-weight: 600;
 }
 
 .table__pagination-item:hover {
-  color: var(--txt-white);
-  background-color: var(--second-color);
+  color: #000;
+  background-color: #ccc;
 }

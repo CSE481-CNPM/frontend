@@ -47,18 +47,8 @@ const Table = (props) => {
           {props.bodyData && props.renderBody ? (
             <tbody>
               {dataShow.forEach((item) => {
-                if (item.NgaySinh) {
-                  item.NgaySinh = new Date(item.NgaySinh)
-                    .toLocaleString('en-US')
-                    .toString();
-                }
-                if (item.ThoiGianKhoiHanh) {
-                  item.ThoiGianKhoiHanh = new Date(item.ThoiGianKhoiHanh)
-                    .toLocaleString('en-US')
-                    .toString();
-                }
-                if (item.ThoiGianHaCanh) {
-                  item.ThoiGianHaCanh = new Date(item.ThoiGianHaCanh)
+                if (item.movieDay) {
+                  item.movieDay = new Date(item.movieDay)
                     .toLocaleString('en-US')
                     .toString();
                 }
