@@ -53,13 +53,21 @@ const CartItem = ({
         </p>
       </div>
       <div>
-        {movie.status === 'booked' && (
+        {movie.status === 'booked' &&
+        new Date() ===
+          new Date(
+            movie.movieDay.toString().substr(0, 11) +
+              movie.showTime +
+              ':00.000Z'
+          ) ? (
           <button
             className="cancel-btn"
             onClick={() => cancelHandler(movie._id)}
           >
             Hủy vé
           </button>
+        ) : (
+          <span className="wait">Phim đã chiếu</span>
         )}
       </div>
     </div>
