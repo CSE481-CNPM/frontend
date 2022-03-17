@@ -53,7 +53,7 @@ const Notifications = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
       <div className="notifications-wrapper">
-        <Navbar tab={1} />
+        <Navbar tab={3} />
         <div className="content-wrapper">
           {movieList.map((message) => {
             return (

@@ -12,7 +12,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  height: 650px;
+  height: 680px;
   border-radius: 8px;
   padding: 20px;
 }
@@ -26,7 +26,7 @@
   justify-content: space-between;
 }
 .close-ticket > svg {
-  margin-right: 20px;
+  /* margin-right: 20px; */
   color: #000;
   border-radius: 50%;
   background-color: #eaeaea;

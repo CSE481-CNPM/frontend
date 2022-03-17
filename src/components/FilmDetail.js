@@ -36,7 +36,7 @@ function FilmDetail({ movieId, setIsLoading, setError }) {
         <img src={movie.avatar} alt="" />
         <div className="icon-play">
           <img
-            src="https://simg.nicepng.com/png/small/11-118375_citekeeper-is-a-crowdsourced-play-icon-white-png.png"
+            src="https://cdn-icons.flaticon.com/png/128/527/premium/527995.png?token=exp=1647531332~hmac=71bb26687e8d612ce5c2f34d394a51b3"
             alt=""
           />
         </div>

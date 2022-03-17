@@ -15,6 +15,24 @@ const CartItem = ({
     setModalIsShown(true);
   };
 
+  let item;
+  if (
+    new Date() >=
+    new Date(
+      movie.movieDay.toString().substr(0, 11) + movie.showTime + ':00.000Z'
+    )
+  ) {
+    item = <span className="wait">Phim đã chiếu</span>;
+  } else if (movie.status === 'booked') {
+    item = (
+      <button className="cancel-btn" onClick={() => cancelHandler(movie._id)}>
+        Hủy vé
+      </button>
+    );
+  } else if (movie.status === 'cancelled') {
+    item = <span className="wait"></span>;
+  }
+
   return (
     <div className="ticket-item">
       <div>
@@ -52,26 +70,7 @@ const CartItem = ({
           )}
         </p>
       </div>
-      <div>
-        {movie.status === 'booked' &&
-        new Date() <
-          new Date(
-            movie.movieDay.toString().substr(0, 11) +
-              movie.showTime +
-              ':00.000Z'
-          ) ? (
-          <button
-            className="cancel-btn"
-            onClick={() => cancelHandler(movie._id)}
-          >
-            Hủy vé
-          </button>
-        ) : movie.status === 'cancelled' ? (
-          <span className="wait">Phim đã hủy</span>
-        ) : (
-          <span className="wait">Phim đã chiếu</span>
-        )}
-      </div>
+      <div>{item}</div>
     </div>
   );
 };

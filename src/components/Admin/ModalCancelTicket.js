@@ -10,6 +10,7 @@ function ModalCancelTicket({
 }) {
   const cancelAllTicketHandler = () => {
     cancelAllTicket(movie._id);
+    setShowCancelTicket(false);
   };
 
   return showCancelTicket ? (
