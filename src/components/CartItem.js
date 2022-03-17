@@ -54,7 +54,7 @@ const CartItem = ({
       </div>
       <div>
         {movie.status === 'booked' &&
-        new Date() ===
+        new Date() >=
           new Date(
             movie.movieDay.toString().substr(0, 11) +
               movie.showTime +
