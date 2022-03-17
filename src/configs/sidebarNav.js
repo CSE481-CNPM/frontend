@@ -18,7 +18,7 @@ const sidebarNav = [
     text: 'Movie',
   },
   {
-    link: 'accounts',
+    link: 'account',
     section: 'accounts',
     icon: <i className="bx bx-user"></i>,
     text: 'Account',

@@ -60,6 +60,7 @@
 }
 .delete-admin:hover {
   background-color: #aa0f0fe4;
+}
 .update,
 .delete-ticket {
   padding: 8px 10px;

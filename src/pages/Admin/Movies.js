@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  Fragment,
+  useCallback,
+} from 'react';
 import Table from '../../components/Admin/Table';
 import { AuthContext } from '../../shared/context/auth-context';
 
@@ -85,17 +91,17 @@ function Movies() {
       <td>{item.movieDay}</td>
 
       <td>
-        <span className='update' onClick={() => onUpdateMovie(item)}>
+        <span className="update" onClick={() => onUpdateMovie(item)}>
           Sửa
         </span>
       </td>
       <td>
-        <span className='delete-ticket' onClick={() => onCancelTicket(item)}>
+        <span className="delete-ticket" onClick={() => onCancelTicket(item)}>
           Hủy Vé
         </span>
       </td>
       <td>
-        <span className='show-ticket' onClick={() => onShowTicket(item)}>
+        <span className="show-ticket" onClick={() => onShowTicket(item)}>
           Xem Vé
         </span>
       </td>
@@ -110,7 +116,33 @@ function Movies() {
     setAMovie(e);
     setShowTicket(true);
   };
+
+  const cancelAllTicket = (movieId) => {
+    setIsLoading(true);
+    axios({
+      method: 'put',
+      baseURL: process.env.REACT_APP_BACKEND_URL,
+      url: `/v1/ticket/film/${movieId}/status`,
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+      data: {
+        status: 'cancelled',
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        setIsLoading(false);
+        setShowCancelTicket(false);
+        triggerLoading();
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.response.data.error);
+      });
+  };
   const onCancelTicket = (e) => {
+    setAMovie(e);
     setShowCancelTicket(true);
   };
 
@@ -121,7 +153,7 @@ function Movies() {
       <div>
         {movie.length > 0 && flag ? (
           <Table
-            limit='5'
+            limit="5"
             headData={customerTableHead}
             renderHead={(item, index) => renderHead(item, index)}
             renderBody={(item, index) => renderBody(item, index)}
@@ -143,6 +175,8 @@ function Movies() {
         <ModalCancelTicket
           showCancelTicket={showCancelTicket}
           setShowCancelTicket={setShowCancelTicket}
+          cancelAllTicket={cancelAllTicket}
+          movie={amovie}
         />
       </div>
     </Fragment>
