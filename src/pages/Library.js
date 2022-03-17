@@ -8,6 +8,7 @@ import Cart from '../components/Cart';
 
 import Modal from '../shared/components/Modal';
 import Button from '../shared/components/Button';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../shared/context/auth-context';
 
@@ -19,6 +20,8 @@ import axios from 'axios';
 import './Library.css';
 
 const Library = () => {
+  const navigate = useNavigate();
+
   const auth = useContext(AuthContext);
 
   const [error, setError] = useState(null);
@@ -57,7 +60,7 @@ const Library = () => {
           axios({
             method: 'get',
             baseURL: process.env.REACT_APP_BACKEND_URL,
-            url: `/v1/movie/${ticket.filmId}`,
+            url: `/v1/movie/${ticket.filmId._id}`,
           }).then((res) => {
             tempArr.push({ movie: res.data.movie, ticket: ticket });
             setMovieList((prev) => [...prev, { ...res.data.movie, ...ticket }]);
@@ -67,6 +70,33 @@ const Library = () => {
         // setMovieList([...tempArr]);
         console.log(movieList);
         setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.response.data.error);
+      });
+  };
+
+  const [chosenTicket, setChosenTicket] = useState('');
+
+  const cancelTicket = () => {
+    console.log(chosenTicket);
+    setIsLoading(true);
+    axios({
+      method: 'put',
+      baseURL: process.env.REACT_APP_BACKEND_URL,
+      url: `/v1/ticket/${chosenTicket}/status`,
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+      data: {
+        status: 'cancelled',
+      },
+    })
+      .then((res) => {
+        setModalIsShown(false);
+        setIsLoading(false);
+        navigate('/library');
       })
       .catch((err) => {
         setIsLoading(false);
@@ -90,7 +120,7 @@ const Library = () => {
               Hủy
             </span>
             <Button>
-              <Link to={'/library'} onClick={closeModal}>
+              <Link to={'/library'} onClick={cancelTicket}>
                 <p className="confirm-login-btn">Hủy vé</p>
               </Link>
             </Button>
@@ -108,6 +138,7 @@ const Library = () => {
           setIsLoading={setIsLoading}
           setError={setError}
           setModalIsShown={setModalIsShown}
+          setChosenTicket={setChosenTicket}
         />
         <Footer />
       </div>

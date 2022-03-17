@@ -12,16 +12,16 @@ const sidebarNav = [
     text: 'Create New Movie',
   },
   {
-    link: 'account',
+    link: 'movie',
     section: 'products',
     icon: <i className="bx bx-cube"></i>,
-    text: 'Account',
+    text: 'Movie',
   },
   {
-    link: '/',
+    link: 'account',
     section: 'customers',
     icon: <i className="bx bx-user"></i>,
-    text: 'Customers',
+    text: 'Account',
   },
   {
     link: '/',
