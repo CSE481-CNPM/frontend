@@ -131,7 +131,6 @@ function Movies() {
       },
     })
       .then((res) => {
-        console.log(res);
         setIsLoading(false);
         setShowCancelTicket(false);
         triggerLoading();

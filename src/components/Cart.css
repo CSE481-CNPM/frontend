@@ -1,10 +1,14 @@
 .Cart-container {
   width: 1200px;
   margin: 0 auto;
-  margin-top: 30px;
+  background: #181818;
+
+  padding-top: 60px;
+}
+.Cart {
+  padding: 30px;
   border-radius: 5px;
   border: 1px solid #515151;
-  padding: 30px;
 }
 .Cart-container > h3 {
   color: #fff;

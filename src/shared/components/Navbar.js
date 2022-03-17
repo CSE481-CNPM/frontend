@@ -1,8 +1,10 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Modal from './Modal';
 import Button from './Button';
+
+import axios from 'axios';
 
 import { AuthContext } from '../context/auth-context';
 
@@ -26,6 +28,46 @@ function Navbar({ tab }) {
   const closeModal = () => {
     setModalIsShown(false);
   };
+
+  const [message, setMessage] = useState([]);
+
+  const fetchMessage = () => {
+    axios({
+      method: 'get',
+      baseURL: process.env.REACT_APP_BACKEND_URL,
+      url: '/v1/auth/me',
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
+      .then((res) => {
+        setMessage(res.data.user.message);
+      })
+      .catch((err) => {});
+  };
+
+  useEffect(() => {
+    fetchMessage();
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      axios({
+        method: 'get',
+        baseURL: process.env.REACT_APP_BACKEND_URL,
+        url: '/v1/auth/me',
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      })
+        .then((res) => {
+          setMessage(res.data.user.message);
+        })
+        .catch((err) => {});
+    }, 1000 * 60 * 1);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <Fragment>
@@ -110,6 +152,9 @@ function Navbar({ tab }) {
                   <div className="nav-menu-box">
                     <Link to={`/notifications`}>
                       <p>Thông báo</p>
+                      {message && message.length > 0 && (
+                        <div className="push-noti">{message.length}</div>
+                      )}
                     </Link>
                     <Link to={`/library`}>
                       <p>Thư viện</p>

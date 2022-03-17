@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../shared/context/auth-context';
 import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import Notification from '../components/Notification';
@@ -12,6 +12,8 @@ import axios from 'axios';
 import './Notifications.css';
 
 const Notifications = () => {
+  const auth = useContext(AuthContext);
+
   const [error, setError] = useState(null);
   const clearError = () => {
     setError(null);
@@ -27,15 +29,13 @@ const Notifications = () => {
     axios({
       method: 'get',
       baseURL: process.env.REACT_APP_BACKEND_URL,
-      url: '/v1/movie',
+      url: '/v1/auth/me',
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
     })
       .then((res) => {
-        if (res.data.films.length === 0) {
-          setMovieList([]);
-          setIsLoading(false);
-          return;
-        }
-        setMovieList(res.data.films);
+        setMovieList(res.data.user.message);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -55,11 +55,14 @@ const Notifications = () => {
       <div className="notifications-wrapper">
         <Navbar tab={1} />
         <div className="content-wrapper">
-          <Notification message={{ content: 'demo-message 1', time: '11h' }} />
-          <Notification message={{ content: 'demo-message 2', time: '11h' }} />
-          <Notification message={{ content: 'demo-message 3', time: '11h' }} />
+          {movieList.map((message) => {
+            return (
+              <Notification
+                message={{ content: message.content, time: message.time }}
+              />
+            );
+          })}
         </div>
-
         <Footer />
       </div>
     </React.Fragment>

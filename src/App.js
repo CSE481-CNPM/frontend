@@ -1,4 +1,4 @@
-import React, { useContext, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthContext } from './shared/context/auth-context';
@@ -19,6 +19,7 @@ import Movies from './pages/Admin/Movies';
 import './assets/libs/boxicons-2.1.1/css/boxicons.min.css';
 import './scss/App.scss';
 import Account from './pages/Admin/Account';
+
 // const Home = React.lazy(() => import('./pages/Home'));
 // const Movie = React.lazy(() => import('./pages/Movie'));
 // const Booking = React.lazy(() => import('./pages/Booking'));

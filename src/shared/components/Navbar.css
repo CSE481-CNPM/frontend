@@ -107,3 +107,18 @@
   color: #dc1a22;
   transition: all 0.35s ease;
 }
+.push-noti {
+  font-size: 12px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50px;
+  background: #dc1a22;
+  position: absolute;
+  right: 16px;
+  top: 8px;
+}

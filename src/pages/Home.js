@@ -51,7 +51,7 @@ const Home = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner />}
-      <div className='home-wrapper'>
+      <div className="home-wrapper">
         <Navbar tab={1} />
         <Carousel movieList={movieList} />
         <MovieIsPlay movieList={movieList} />
