@@ -14,9 +14,10 @@ import LoadingSpinner from './shared/components/LoadingSpinner';
 import MainLayout from './layout/MainLayout';
 import Dashboard from './pages/Admin/Dashboard';
 import AddMovie from './pages/Admin/AddMovie';
-
+import Movies from './pages/Admin/Movies';
 import './assets/libs/boxicons-2.1.1/css/boxicons.min.css';
 import './scss/App.scss';
+import Account from './pages/Admin/Account';
 // const Home = React.lazy(() => import('./pages/Home'));
 // const Movie = React.lazy(() => import('./pages/Movie'));
 // const Booking = React.lazy(() => import('./pages/Booking'));
@@ -32,16 +33,20 @@ const App = () => {
 
   if (isAdmin === 'admin') {
     adminRoutes = (
-      <Route path="/admin" element={<MainLayout />}>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="add-movie" element={<AddMovie />} />
+      <Route path='/admin' element={<MainLayout />}>
+        <Route path='dashboard' element={<Dashboard />} />
+        <Route path='add-movie' element={<AddMovie />} />
+        <Route path='movie' element={<Movies />} />
+        <Route path='accounts' element={<Account />} />
       </Route>
     );
   } else {
     adminRoutes = (
-      <Route path="/admin" element={<MainLayout />}>
-        <Route path="dashboard" element={<Navigate to="/" />} />
-        <Route path="add-movie" element={<Navigate to="/" />} />
+      <Route path='/admin' element={<MainLayout />}>
+        <Route path='dashboard' element={<Navigate to='/' />} />
+        <Route path='add-movie' element={<Navigate to='/' />} />
+        <Route path='movie' element={<Navigate to='/' />} />
+        <Route path='accounts' element={<Navigate to='/' />} />
       </Route>
     );
   }
@@ -49,37 +54,37 @@ const App = () => {
   if (token) {
     routes = (
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie/:movieId" element={<Movie />} />
-        <Route path="/booking/:movieId" element={<Booking />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/movie/:movieId' element={<Movie />} />
+        <Route path='/booking/:movieId' element={<Booking />} />
 
-        <Route path="/authentication" element={<Navigate to="/" />} />
+        <Route path='/authentication' element={<Navigate to='/' />} />
 
-        <Route path="/library" element={<Library />} />
+        <Route path='/library' element={<Library />} />
 
-        <Route path="/admin" element={<NotFound />} />
+        <Route path='/admin' element={<NotFound />} />
         {adminRoutes}
 
-        <Route path="/notfound" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/notfound" />} />
+        <Route path='/notfound' element={<NotFound />} />
+        <Route path='*' element={<Navigate to='/notfound' />} />
       </Routes>
     );
   } else {
     routes = (
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie/:movieId" element={<Movie />} />
-        <Route path="/booking/:movieId" element={<Navigate to="/" />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/movie/:movieId' element={<Movie />} />
+        <Route path='/booking/:movieId' element={<Navigate to='/' />} />
 
-        <Route path="/authentication" element={<Authentication />} />
+        <Route path='/authentication' element={<Authentication />} />
 
-        <Route path="/library" element={<Navigate to="/" />} />
+        <Route path='/library' element={<Navigate to='/' />} />
 
-        <Route path="/admin" element={<NotFound />} />
+        <Route path='/admin' element={<NotFound />} />
         {adminRoutes}
 
-        <Route path="/notfound" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/notfound" />} />
+        <Route path='/notfound' element={<NotFound />} />
+        <Route path='*' element={<Navigate to='/notfound' />} />
       </Routes>
     );
   }
